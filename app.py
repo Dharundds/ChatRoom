@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from flask import Flask,render_template,redirect,url_for,request
 from flask_socketio import SocketIO,join_room
 app = Flask(__name__)
@@ -27,7 +26,3 @@ def joinning_room(data):
 if __name__=="__main__":
     socket.run(app,debug=True)  
     
-=======
-
-  
->>>>>>> 49e0ba70b71b25520318601640bfbe3d14fd4216
