@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/chat.css">
+    <title>ChatRoom</title>
+    
+</head>
+<body>
+    <div class='container'>
+        <h1>{{room}}</h1>
+        <form id="chat-form">
+            <input type="text" id='msg' placeholder="Type your text here" autocomplete="off" required/>
+            <button class="btn">Send</button>
+        </form>           
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.min.js" integrity="sha512-eVL5Lb9al9FzgR63gDs1MxcDS2wFu3loYAgjIH0+Hg38tCS8Ag62dwKyH+wzDb+QauDpEZjXbMn11blw8cbTJQ==" crossorigin="anonymous"></script>
+    <script >
+        const socket = io.connect('http://127.0.0.1:5000/');
+
+        socket.on('connect',function (){
+            socket.emit('join-room',{
+                username: "{{username}}",
+                room:"{{room}}"
+            })
+        } )
+        socket.on('joined_room',function (data){
+            console.log(data)
+        })
+
+
+    </script>
+</body>
+</html>
