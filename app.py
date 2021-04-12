@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect, url_for, request
 from flask_socketio import SocketIO, join_room, leave_room, send
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
-from db import get_user
+from db import get_user, save_user
 
 
 app = Flask(__name__)
@@ -34,6 +34,23 @@ def login():
             message = 'Failed to login'
 
     return render_template('login.html', message=message)
+
+
+@app.route('/signup', methods=["GET", "POST"])
+def signup():
+    message = ''
+    if request.method == "POST":
+        username = request.form.get('username')
+        password = request.form.get('password')
+        user = get_user(username)
+        if user:
+            message = 'User already exist'
+        else:
+            save_user(username, password)
+
+            return redirect(url_for('home'))
+
+    return render_template('signup.html', message=message)
 
 
 @app.route('/logout')

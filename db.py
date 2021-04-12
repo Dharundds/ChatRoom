@@ -18,6 +18,9 @@ def get_user(username):
     user_data = users_collections.find_one({'_id': username})
     return User(user_data['_id'], user_data['password']) if user_data else None
 
+#user_data = {'_id':dharun , 'password':dharun}
+#user_data = None
+
 
 if __name__ == "__main__":
     save_user("zaid", "zaid")
