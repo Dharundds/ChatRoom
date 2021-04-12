@@ -1,0 +1,98 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  font-weight: lighter;
+}
+
+body {
+  background: url("../images/background.png");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  transition: 300ms ease-in-out;
+}
+
+.container {
+  border: 1px solid white;
+  border-radius: 20px;
+  width: 300px;
+  height: 380px;
+  position: absolute;
+  left: 48%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  /*  justify-content: space-around; */
+  align-items: center;
+  background-color: rgba(0, 0, 50, 0.3);
+}
+
+h1,
+h3 {
+  margin-top: 10px;
+  color: white;
+}
+
+#myForm {
+  margin-top: 30px;
+  margin-left: 15%;
+  color: white;
+}
+
+#myForm label {
+  font-size: 18px;
+}
+
+#myForm input {
+  border: 1px solid white;
+  color: white;
+  margin-top: 30px;
+  border-radius: 20px;
+  font-size: 14px;
+  padding: 10px 25px;
+  padding-left: 10px;
+  outline: none;
+  background-color: rgba(255, 255, 255, 0);
+  transition: 0.25s;
+}
+
+#myForm input::placeholder {
+  color: white;
+  font-size: 14px;
+  text-align: center;
+}
+
+#myForm input::before {
+  content: "";
+}
+
+#myForm input:focus {
+  border: 3px solid white;
+  width: 200px;
+  border-color: #2ecc71;
+}
+
+#myForm input:hover {
+  background: #2ecc71;
+}
+.container button {
+  margin-left: 15%;
+  margin-top: 30px;
+  color: #fbfcfd;
+  padding: 10px 25px;
+  background: transparent;
+  border: 1px solid #fff;
+  border-radius: 20px;
+  outline: none;
+  cursor: pointer;
+  transition: 300ms ease-in-out;
+}
+
+.container button:hover {
+  background-color: aliceblue;
+  opacity: 1;
+  color: black;
+}
