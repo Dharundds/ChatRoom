@@ -7,6 +7,10 @@
     <title>Centigrade ChatRoom</title>
   </head>
   <body>
+    <h3>
+      hi {% if current_user.is_authenticated %}{{current_user.username}} {% else
+      %} Guest{% endif %}}!
+    </h3>
     <div class="container">
       <form action="/chat" class="myForm">
         <label for="username">Username</label>
@@ -16,10 +20,6 @@
           placeholder="your name..."
           required
         />
-        <!-- <div class="pass">
-                <label >Password</label>
-                <input type="password" name="pswd" id="pswd" placeholder="Your Password" required>               
-            </div> -->
         <label>Room</label>
         <select name="room" id="room">
           <option value="Admin">Room1(Admin)</option>
