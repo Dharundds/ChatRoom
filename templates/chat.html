@@ -9,6 +9,9 @@
   </head>
   <body>
     <div class="container">
+      <button style="margin-left: 350px; margin-top: 0" onclick="logout()">
+        Log out
+      </button>
       <header class="chat-header">
         <h1>Room :{{room}}</h1>
         <button type="button" id="btn">Leave Room</button>
@@ -84,6 +87,10 @@
         newNode.innerHTML = `<b>${data.username}</b> has left the room`;
         document.getElementById("messages").appendChild(newNode);
       });
+
+      logout = () => {
+        window.location.href = "{{url_for('logout')}}";
+      };
     </script>
   </body>
 </html>

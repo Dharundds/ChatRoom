@@ -9,9 +9,13 @@
   <body>
     <h3>
       hi {% if current_user.is_authenticated %}{{current_user.username}} {% else
-      %} Guest{% endif %}}!
+      %} Guest{% endif %}}!<button style="margin-left: 200px; margin-top: 0" onclick="logout()">Log out</button>
     </h3>
+
     <div class="container">
+      
+        
+      </button>
       <form action="/chat" class="myForm">
         <label for="username">Username</label>
         <input
@@ -30,4 +34,9 @@
       </form>
     </div>
   </body>
+  <script>
+    logout = () => {
+      window.location.href = "{{url_for('logout')}}";
+    };
+  </script>
 </html>
