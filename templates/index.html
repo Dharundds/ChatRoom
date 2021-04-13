@@ -37,9 +37,13 @@
               id="username"
               type="text"
               name="username"
-              placeholder="Username"
-              required
+              placeholder="Guest"
+              value="{{current_user.username}}"
+              readonly
             />
+            <div class="select">
+              <input type="text" id="room" name="room" readonly />
+            </div>
             <div class="dropdown" name="room">
               <button
                 class="btn btn-secondary dropdown-toggle"
@@ -67,27 +71,37 @@
                   class="dropdown-item"
                   type="button"
                   value="Admin"
+                  onclick="selectRoom()"
                 >
                   Room1(Admin)
                 </button>
                 <button
-                  id="dropp"
+                  id="dropp2"
                   class="dropdown-item"
                   type="button"
-                  value="room2"
+                  value="Room2"
+                  onclick="Room2()"
                 >
                   Room2
                 </button>
                 <button
-                  id="dropp"
+                  id="dropp3"
                   class="dropdown-item"
                   type="button"
-                  value="room3"
+                  value="Room3"
+                  onclick="Room3()"
                 >
                   Room3
                 </button>
               </div>
             </div>
+            <!--  <label>Room</label>
+            <select name="room" id="room">
+              <option value="none"></option>
+              <option value="Admin">Room1(Admin)</option>
+              <option value="room2">Room2</option>
+              <option value="room3">Room3</option>
+            </select> -->
             <div class="join">
               <button type="submit" id="join">Join Chat</button>
             </div>
@@ -118,6 +132,21 @@
       };
       login = () => {
         window.location.href = "{{url_for('login')}}";
+      };
+      selectRoom = () => {
+        let room = document.getElementById("dropp").value;
+        console.log(room);
+        document.getElementById("room").value = room;
+      };
+      Room2 = () => {
+        let room2 = document.getElementById("dropp2").value;
+        console.log(room2);
+        document.getElementById("room").value = room2;
+      };
+      Room3 = () => {
+        let room2 = document.getElementById("dropp3").value;
+        console.log(room3);
+        document.getElementById("room").value = room2;
       };
     </script>
   </body>

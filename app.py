@@ -29,7 +29,7 @@ def login():
 
         if user and user.check_password(password_input):
             login_user(user)
-            return redirect(url_for('home'))
+            return redirect(url_for('home',username=username))
         else:
             message = 'Failed to login'
 

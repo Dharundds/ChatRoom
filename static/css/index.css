@@ -1,73 +1,89 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
-*{
-    font-family: 'Poppins', sans-serif;
-  
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
+* {
+  font-family: "Poppins", sans-serif;
 }
-body{
-    background:#210124;
-    background: rgb(33,1,36);
-background: linear-gradient(127deg, rgba(33,1,36,1) 27%, rgba(117,13,55,1) 72%);
-background-size: 150% 150%;
-animation: move 3000ms ease-in-out infinite;
-overflow: hidden;
+body {
+  background: #210124;
+  background: rgb(33, 1, 36);
+  background: linear-gradient(
+    127deg,
+    rgba(33, 1, 36, 1) 27%,
+    rgba(117, 13, 55, 1) 72%
+  );
+  background-size: 150% 150%;
+  animation: move 3000ms ease-in-out infinite;
+  overflow: hidden;
 }
-.container{
-    width:100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.textss{
-    background: rgb(33,1,36);
-background: linear-gradient(302deg, rgba(33,1,36,1) 27%, rgba(117,13,55,1) 72%);
-    width: 60%;
-    border-radius: 15%;
-    height:80vh;
-    position:inherit;
-    justify-content: center;
-    align-items: center;
-  
-    
+.textss {
+  background: rgb(33, 1, 36);
+  background: linear-gradient(
+    302deg,
+    rgba(33, 1, 36, 1) 27%,
+    rgba(117, 13, 55, 1) 72%
+  );
+  width: 60%;
+  border-radius: 15%;
+  height: 80vh;
+  position: inherit;
+  justify-content: center;
+  align-items: center;
 }
-#username{
-    border-style: none;
-    font-style: none;
-    outline-style: none;
-    font-size: 150%;
-    width: 80%;
-    border-radius: 1vh;
-    color:#B3DEC1;
-    background: rgb(33,1,36);
-    background: linear-gradient(90deg, rgba(33,1,36,1) 37%, rgba(117,13,55,1) 87%);
+
+#username,
+#room {
+  border-style: none;
+  font-style: none;
+  outline-style: none;
+  font-size: 150%;
+  width: 80%;
+  border-radius: 1vh;
+  color: #b3dec1;
+  background: rgb(33, 1, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(33, 1, 36, 1) 37%,
+    rgba(117, 13, 55, 1) 87%
+  );
 }
-#username:focus,#username:hover{
-content: "  ";   
-transition: 500ms;
-font-size: 160%;
-background: rgb(33,1,36);
-background: linear-gradient(90deg, rgba(33,1,36,1) 37%, rgba(117,13,55,1) 87%);
+#username:focus,
+#username:hover {
+  content: "  ";
+  transition: 500ms;
+  font-size: 160%;
+  background: rgb(33, 1, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(33, 1, 36, 1) 37%,
+    rgba(117, 13, 55, 1) 87%
+  );
 }
-#items{
-    position: relative;
-    top: 9%;
-    left:5%;
+#items {
+  position: relative;
+  top: 9%;
+  left: 5%;
 }
-::placeholder{
-    color: grey;
+::placeholder {
+  color: grey;
 }
-#header1{
-    font-family: 'Poppins', sans-serif;
-    font-size:3em;
-    font-weight: bolder;
-    justify-content: center;
-    left:5%;
-    top:5%;
-    position:relative;
-    color:#B3DEC1;
+#header1 {
+  font-family: "Poppins", sans-serif;
+  font-size: 3em;
+  font-weight: bolder;
+  justify-content: center;
+  left: 5%;
+  top: 5%;
+  position: relative;
+  color: #b3dec1;
 }
-.dropdown{
-    border-style: none;
+.dropdown {
+  border-style: none;
 }
 /* select,option{
 position: relative;
@@ -82,71 +98,83 @@ background:transparent;
 option::before{
     background-color: transparent;
 } */
-#dropp{
-    overflow: visible;
- color:#B3DEC1;
-border-radius: 1vh;
-
+#dropp,
+#dropp2,
+#dropp3 {
+  overflow: visible;
+  color: #b3dec1;
+  border-radius: 1vh;
 }
-#dropp:hover{
-    background: linear-gradient(127deg, rgba(179,222,193,1) 29%, rgba(90,194,138,1) 99%);
-    color:black;
+#dropp:hover,
+#dropp2:hover,
+#dropp3:hover {
+  background: linear-gradient(
+    127deg,
+    rgba(179, 222, 193, 1) 29%,
+    rgba(90, 194, 138, 1) 99%
+  );
+  color: black;
 }
-#ddm{
-    overflow:auto;
-    background-color: transparent;
-    text-align: left;
-    /* border-color: rgb(33,1,36);
+#ddm {
+  overflow: auto;
+  background-color: transparent;
+  text-align: left;
+  /* border-color: rgb(33,1,36);
     border-width: 2px; */
-    border-style: none;
+  border-style: none;
 }
-.buttons{
+.buttons {
+  position: relative;
+  left: 75%;
+  top: 10%;
+}
+#button11,
+#buttons11 {
+  border-radius: 1vh;
+  padding: 15px 32px;
+  background: rgb(179, 222, 193);
+  background: linear-gradient(
+    127deg,
+    rgba(179, 222, 193, 1) 29%,
+    rgba(90, 194, 138, 1) 99%
+  );
+  cursor: pointer;
+}
 
-    position: relative;
-    left:75%;
-    top:10%;
-    
+#button11:hover,
+#buttons11:hover {
+  background-size: 150% 150%;
+  animation: move 3000ms ease-in-out infinite;
 }
-#button11,#buttons11{
-    border-radius: 1vh;
-    padding: 15px 32px;
-    background: rgb(179,222,193);
-    background: linear-gradient(127deg, rgba(179,222,193,1) 29%, rgba(90,194,138,1) 99%);
-    cursor: pointer;
-    
-
+.join {
+  position: relative;
+  left: 55%;
+  top: 20px;
 }
-
-#button11:hover,#buttons11:hover{
-    background-size: 150% 150%;
-    animation: move 3000ms ease-in-out infinite;
+#join {
+  border-radius: 1vh;
+  border-style: none;
+  padding: 15px 65px;
+  background: rgb(179, 222, 193);
+  background: linear-gradient(
+    127deg,
+    rgba(179, 222, 193, 1) 29%,
+    rgba(90, 194, 138, 1) 99%
+  );
+  cursor: pointer;
 }
-.join{
-    position:relative;
-    left:55%;
-    top:20px;
+#join:hover {
+  background-size: 150% 150%;
+  animation: move 3000ms ease-in-out infinite;
 }
-#join{   
-    border-radius: 1vh;
-    border-style: none;
-    padding: 15px 65px;
-    background: rgb(179,222,193);
-    background: linear-gradient(127deg, rgba(179,222,193,1) 29%, rgba(90,194,138,1) 99%);
-    cursor: pointer;
-
-}
-#join:hover{
-    background-size: 150% 150%;
-    animation: move 3000ms ease-in-out infinite;
-}
-@keyframes move{ 
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
+@keyframes move {
+  0% {
+    background-position: 0% 50%;
   }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
