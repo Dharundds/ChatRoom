@@ -42,11 +42,12 @@ def signup():
     if request.method == "POST":
         username = request.form.get('username')
         password = request.form.get('password')
+        email_address = request.form.get('email_address')
         user = get_user(username)
         if user:
             message = 'User already exist'
         else:
-            save_user(username, password)
+            save_user(username, password,email_address)
 
             return redirect(url_for('home'))
 

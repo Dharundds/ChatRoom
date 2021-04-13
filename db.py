@@ -9,18 +9,12 @@ chat_db = client.get_database("ChatDB")
 users_collections = chat_db.get_collection("users")
 
 
-def save_user(username, password):
+def save_user(username, password, email_address):
     password = generate_password_hash(password)
-    users_collections.insert_one({'_id': username, 'password': password})
+    users_collections.insert_one(
+        {'_id': username, 'password': password, 'email_address': email_address})
 
 
 def get_user(username):
     user_data = users_collections.find_one({'_id': username})
-    return User(user_data['_id'], user_data['password']) if user_data else None
-
-#user_data = {'_id':dharun , 'password':dharun}
-#user_data = None
-
-
-if __name__ == "__main__":
-    save_user("zaid", "zaid")
+    return User(user_data['_id'], user_data['password'], user_data['email_address']) if user_data else None
