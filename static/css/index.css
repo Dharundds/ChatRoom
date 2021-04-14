@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,500;1,500&display=swap');
 * {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Ubuntu', sans-serif;
 }
 body {
   background: #210124;
@@ -43,9 +43,10 @@ body {
 }
 ::placeholder {
   color: grey;
+  font-size: smaller;
 }
 #header1 {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Ubuntu', sans-serif;
   font-size: 3em;
   font-weight: bolder;
   justify-content: center;
