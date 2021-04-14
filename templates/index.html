@@ -11,6 +11,9 @@
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous"
     />
+   
+    <link rel="shortcut icon" type="image/ico" href="../static/images/favicon.ico"/>
+
     <title>Centigrade ChatRoom</title>
   </head>
   <body>
@@ -33,33 +36,21 @@
         </p>
         <div id="items">
           <form action="/chat" class="myForm">
-            <input
-              id="username"
-              type="text"
-              name="username"
-              placeholder="Guest"
-              value="{{current_user.username}}"
-              readonly
-            />
+
             <div class="select">
               <input type="text" id="room" name="room" readonly />
             </div>
             <div class="dropdown" name="room">
               <button
-                class="btn btn-secondary dropdown-toggle"
+                class="btn btn-secondary dropdown-toggle roomname"
                 type="button"
                 id="dropdownMenuButton"
-                style="
-                  background-color: transparent;
-                  outline-style: none;
-                  border-style: none;
-                "
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
                 name="room"
               >
-                Rooms
+                Select Room
               </button>
               <div
                 class="dropdown-menu"
@@ -77,7 +68,7 @@
                 </button>
                 <button
                   id="dropp2"
-                  class="dropdown-item"
+                  class="dropdown-item dropp"
                   type="button"
                   value="Room2"
                   onclick="Room2()"
@@ -126,28 +117,14 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
-    <script>
+    <script src="../static/js/index.js"></script>
+    <script >
       logout = () => {
-        window.location.href = "{{url_for('logout')}}";
-      };
-      login = () => {
-        window.location.href = "{{url_for('login')}}";
-      };
-      selectRoom = () => {
-        let room = document.getElementById("dropp").value;
-        console.log(room);
-        document.getElementById("room").value = room;
-      };
-      Room2 = () => {
-        let room2 = document.getElementById("dropp2").value;
-        console.log(room2);
-        document.getElementById("room").value = room2;
-      };
-      Room3 = () => {
-        let room2 = document.getElementById("dropp3").value;
-        console.log(room2);
-        document.getElementById("room").value = room2;
-      };
+    window.location.href = "{{url_for('logout')}}";
+  };
+  login = () => {
+    window.location.href = "{{url_for('login')}}";
+  };
     </script>
   </body>
 </html>

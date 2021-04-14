@@ -36,8 +36,7 @@ body {
   align-items: center;
 }
 
-#username,
-#room {
+/* #username{
   border-style: none;
   font-style: none;
   outline-style: none;
@@ -51,8 +50,8 @@ body {
     rgba(33, 1, 36, 1) 37%,
     rgba(117, 13, 55, 1) 87%
   );
-}
-#username:focus,
+} */
+/* #username:focus,
 #username:hover {
   content: "  ";
   transition: 500ms;
@@ -63,7 +62,7 @@ body {
     rgba(33, 1, 36, 1) 37%,
     rgba(117, 13, 55, 1) 87%
   );
-}
+} */
 #items {
   position: relative;
   top: 9%;
@@ -99,11 +98,16 @@ option::before{
     background-color: transparent;
 } */
 #dropp,
-#dropp2,
+
 #dropp3 {
   overflow: visible;
   color: #b3dec1;
   border-radius: 1vh;
+}
+#dropp2{
+    overflow: visible;
+    color: #b3dec1;
+    border-radius: 1vh;
 }
 #dropp:hover,
 #dropp2:hover,
@@ -140,7 +144,25 @@ option::before{
   );
   cursor: pointer;
 }
-
+#room{
+        position:relative;
+        background-color: transparent;
+        border-style: none;
+        cursor:default;
+        color:rgb(179, 222, 193);
+        left:10px;
+        display: none;
+}
+#dropdownMenuButton{
+    position:relative;
+    top:10px;
+    background-color: transparent;
+    outline-style: none;
+    border-style: none;
+    font-weight: medium;
+    color:rgb(179, 222, 193);
+    font-size: larger;
+}
 #button11:hover,
 #buttons11:hover {
   background-size: 150% 150%;

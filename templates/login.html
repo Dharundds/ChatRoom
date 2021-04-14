@@ -5,18 +5,45 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../static/css/login.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="shortcut icon" type="image/ico" href="../static/images/favicon.ico"/>
     <title>Login</title>
   </head>
   <body>
     <div class="container">
-      <h1>Login</h1>
+    <div class="insider">
+      
+      <h1>Signin</h1>
       <h3>{{message}}</h3>
       <form action="/login" method="post" id="myForm">
-        <input type="text" name="username" placeholder="Username:" />
-        <input type="password" name="password" placeholder="Password:" />
-        <button type="submit">Submit</button>
+        <input type="text" name="username" placeholder="Username" id="uname" ><span class="material-icons" id="person">
+          person
+          </span></input>
+        <input type="password" name="password" placeholder="Password" id="pass"> <span class="material-icons" id="eye" onclick="showPass() ">
+          visibility_off
+          </span></input>
+        <br>
+        <button type="submit" id="submit">Login</button>
       </form>
-      <p>Don't have a account?<a href="/signup">Sign up</a></p>
+      <br>
+      <br>
+      <p id="help">Don't have a account?<a id="help-a" href="/signup">Sign up</a></p>
     </div>
+    </div>
+    <script>
+      showPass = () =>{
+        let i=document.getElementById("eye").innerHTML
+        if (i=="visibility_off"){
+          document.getElementById("eye").innerHTML="visibility";
+          document.getElementById("pass").type="text";
+        }
+        else{
+          document.getElementById("eye").innerHTML="visibility_off";
+          document.getElementById("pass").type="password";
+        }
+      };
+    </script>
   </body>
 </html>
