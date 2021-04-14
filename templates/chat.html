@@ -1,98 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <!--  <link rel="stylesheet" href="../static/css/chat.css" /> -->
-   <link rel="shortcut icon" type="image/ico" href="../static/images/favicon.ico"/>
-    <title>ChatRoom</title>
-  </head>
-  <body>
-    <div class="container">
-      <button style="margin-left: 350px; margin-top: 0" onclick="logout()">
-        Log out
-      </button>
-      <header class="chat-header">
-        <h1>Room :{{room}}</h1>
-        <button type="button" id="btn">Leave Room</button>
-      </header>
-      <div id="messages"></div>
-      </div>
-      <form id="chatform">
-        <input
-          type="text"
-          id="msg"
-          placeholder="Type your text here"
-          autocomplete="off"
-        />
-        <button type="submit" id="btn">Send</button>
-      </form>
-    </div>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
-      integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
-      crossorigin="anonymous"
-    ></script>
-    <script>
-      const socket = io.connect("http://127.0.0.1:5000/");
 
-      socket.on("connect", function () {
-        socket.emit("join_room", {
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!--  <link rel="stylesheet" href="../static/css/chat.css" /> -->
+  <link rel="shortcut icon" type="image/ico" href="../static/images/favicon.ico" />
+  <title>ChatRoom</title>
+</head>
+
+<body>
+  <div class="container">
+    <button style="margin-left: 350px; margin-top: 0" onclick="logout()">
+      Log out
+    </button>
+    <header class="chat-header">
+      <h1>Room :{{room}}</h1>
+      <button type="button" id="btn">Leave Room</button>
+    </header>
+    <div id="messages"></div>
+  </div>
+  <form id="chatform">
+    <input type="text" id="msg" placeholder="Type your text here" autocomplete="off" />
+    <button type="submit" id="btn">Send</button>
+  </form>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
+    integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
+    crossorigin="anonymous"></script>
+  <script>
+    const socket = io.connect("http://127.0.0.1:5000/");
+
+    socket.on("connect", function () {
+      socket.emit("join_room", {
+        username: "{{username}}",
+        room: "{{room}}",
+      });
+
+      let msg_input = document.getElementById("msg");
+
+      document.getElementById("chatform").onsubmit = function (e) {
+        e.preventDefault();
+        let message = msg_input.value.trim();
+        if (message.length) {
+          socket.emit("send_msg", {
+            username: "{{username}}",
+            room: "{{room}}",
+            message: message,
+          });
+        }
+        msg_input.value = "";
+        msg_input.focus();
+      };
+
+      const leave = document.getElementById("btn");
+      leave.onclick = function (e) {
+        socket.emit("leave_room", {
           username: "{{username}}",
           room: "{{room}}",
         });
-
-        let msg_input = document.getElementById("msg");
-
-        document.getElementById("chatform").onsubmit = function (e) {
-          e.preventDefault();
-          let message = msg_input.value.trim();
-          if (message.length) {
-            socket.emit("send_msg", {
-              username: "{{username}}",
-              room: "{{room}}",
-              message: message,
-            });
-          }
-          msg_input.value = "";
-          msg_input.focus();
-        };
-
-        const leave = document.getElementById("btn");
-        leave.onclick = function (e) {
-          socket.emit("leave_room", {
-            username: "{{username}}",
-            room: "{{room}}",
-          });
-          socket.disconnect();
-          window.location.href = "{{url_for('home')}}";
-        };
-      });
-
-      socket.on("receive_msg", function (data) {
-        console.log(data);
-        const newNode = document.createElement("div");
-        newNode.innerHTML = `<b>${data.username}:&nbsp;</b> ${data.message}`;
-        document.getElementById("messages").appendChild(newNode);
-      });
-
-      socket.on("join_room_announcement", function (data) {
-        console.log(data);
-        const newNode = document.createElement("div");
-        newNode.innerHTML = `<b>${data.username}</b> has joined the room`;
-        document.getElementById("messages").appendChild(newNode);
-      });
-      socket.on("leave_room_announcement", function (data) {
-        console.log(data);
-        const newNode = document.createElement("div");
-        newNode.innerHTML = `<b>${data.username}</b> has left the room`;
-        document.getElementById("messages").appendChild(newNode);
-      });
-
-      logout = () => {
-        window.location.href = "{{url_for('logout')}}";
+        socket.disconnect();
+        window.location.href = "{{url_for('home')}}";
       };
-    </script>
-  </body>
+    });
+
+    socket.on("receive_msg", function (data) {
+      console.log(data);
+      const newNode = document.createElement("div");
+      newNode.innerHTML = `<b>${data.username}:&nbsp;</b> ${data.message}`;
+      document.getElementById("messages").appendChild(newNode);
+    });
+
+    socket.on("join_room_announcement", function (data) {
+      console.log(data);
+      const newNode = document.createElement("div");
+      newNode.innerHTML = `<b>${data.username}</b> has joined the room`;
+      document.getElementById("messages").appendChild(newNode);
+    });
+    socket.on("leave_room_announcement", function (data) {
+      console.log(data);
+      const newNode = document.createElement("div");
+      newNode.innerHTML = `<b>${data.username}</b> has left the room`;
+      document.getElementById("messages").appendChild(newNode);
+    });
+
+    logout = () => {
+      window.location.href = "{{url_for('logout')}}";
+    };
+  </script>
+</body>
+
 </html>

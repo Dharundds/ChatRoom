@@ -1,142 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../static/css/index.css" />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous"
-    />
 
-    <link
-      rel="shortcut icon"
-      type="image/ico"
-      href="../static/images/favicon.ico"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../static/css/index.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
 
-    <title>Centigrade ChatRoom</title>
-  </head>
-  <body>
-    <div class="container">
-      <div class="textss">
-        <div class="buttons">
-          {% if current_user.is_authenticated %}<button
-            id="button11"
-            onclick="logout()"
-          >
-            logout
-          </button>
-          > {% else %}<button id="buttons11" onclick="login()">login</button>{%
-          endif %}
-        </div>
-        <p id="header1">
-          {% if current_user.is_authenticated %}Welcome back,<br />{{current_user.username}}
-          {% else %} Welcome,<br />
-          Guest{% endif %} !!
-        </p>
-        <div id="items">
-          <form action="/chat" class="myForm">
-            <input
-              type="text"
-              name="username"
-              id="username"
-              placeholder="Guest"
-              value="{{current_user.username}}"
-              readonly
-            />
-            <div class="select">
-              <input type="text" id="room" name="room" readonly />
-            </div>
-            <div class="dropdown" name="room">
-              <button
-                class="btn btn-secondary dropdown-toggle roomname"
-                type="button"
-                id="dropdownMenuButton"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-                name="room"
-              >
-                Select Room
+  <link rel="shortcut icon" type="image/ico" href="../static/images/favicon.ico" />
+
+  <title>Centigrade ChatRoom</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="textss">
+      <div class="buttons">
+        {% if current_user.is_authenticated %}<button id="button11" onclick="logout()">
+          logout
+        </button>
+        > {% else %}<button id="buttons11" onclick="login()">login</button>{%
+        endif %}
+      </div>
+      <p id="header1">
+        {% if current_user.is_authenticated %}Welcome back,<br />{{current_user.username}}
+        {% else %} Welcome,<br />
+        Guest{% endif %} !!
+      </p>
+      <div id="items">
+        <form action="/chat" class="myForm">
+          <input type="text" name="username" id="username" placeholder="Guest" value="{{current_user.username}}"
+            readonly />
+          <div class="select">
+            <input type="text" id="room" name="room" readonly />
+          </div>
+          <div class="dropdown" name="room">
+            <button class="btn btn-secondary dropdown-toggle roomname" type="button" id="dropdownMenuButton"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" name="room">
+              Select Room
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="ddm">
+              <button id="dropp" class="dropdown-item" type="button" value="Admin" onclick="selectRoom()">
+                Room1(Admin)
               </button>
-              <div
-                class="dropdown-menu"
-                aria-labelledby="dropdownMenuButton"
-                id="ddm"
-              >
-                <button
-                  id="dropp"
-                  class="dropdown-item"
-                  type="button"
-                  value="Admin"
-                  onclick="selectRoom()"
-                >
-                  Room1(Admin)
-                </button>
-                <button
-                  id="dropp2"
-                  class="dropdown-item dropp"
-                  type="button"
-                  value="Room2"
-                  onclick="Room2()"
-                >
-                  Room2
-                </button>
-                <button
-                  id="dropp3"
-                  class="dropdown-item"
-                  type="button"
-                  value="Room3"
-                  onclick="Room3()"
-                >
-                  Room3
-                </button>
-              </div>
+              <button id="dropp2" class="dropdown-item dropp" type="button" value="Room2" onclick="Room2()">
+                Room2
+              </button>
+              <button id="dropp3" class="dropdown-item" type="button" value="Room3" onclick="Room3()">
+                Room3
+              </button>
             </div>
-            <!--  <label>Room</label>
+          </div>
+          <!--  <label>Room</label>
             <select name="room" id="room">
               <option value="none"></option>
               <option value="Admin">Room1(Admin)</option>
               <option value="room2">Room2</option>
               <option value="room3">Room3</option>
             </select> -->
-            <div class="join">
-              <button type="submit" id="join">Join Chat</button>
-            </div>
-          </form>
-          <br />
-        </div>
+          <div class="join">
+            <button type="submit" id="join">Join Chat</button>
+          </div>
+        </form>
+        <br />
       </div>
     </div>
+  </div>
 
-    <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"
-    ></script>
-    <script src="../static/js/index.js"></script>
-    <script>
-      logout = () => {
-        window.location.href = "{{url_for('logout')}}";
-      };
-      login = () => {
-        window.location.href = "{{url_for('login')}}";
-      };
-    </script>
-  </body>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script src="../static/js/index.js"></script>
+  <script>
+    logout = () => {
+      window.location.href = "{{url_for('logout')}}";
+    };
+    login = () => {
+      window.location.href = "{{url_for('login')}}";
+    };
+  </script>
+</body>
+
 </html>
-<!--done da nee paaru -->

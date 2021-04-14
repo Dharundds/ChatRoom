@@ -36,33 +36,6 @@ body {
   align-items: center;
 }
 
-/* #username{
-  border-style: none;
-  font-style: none;
-  outline-style: none;
-  font-size: 150%;
-  width: 80%;
-  border-radius: 1vh;
-  color: #b3dec1;
-  background: rgb(33, 1, 36);
-  background: linear-gradient(
-    90deg,
-    rgba(33, 1, 36, 1) 37%,
-    rgba(117, 13, 55, 1) 87%
-  );
-} */
-/* #username:focus,
-#username:hover {
-  content: "  ";
-  transition: 500ms;
-  font-size: 160%;
-  background: rgb(33, 1, 36);
-  background: linear-gradient(
-    90deg,
-    rgba(33, 1, 36, 1) 37%,
-    rgba(117, 13, 55, 1) 87%
-  );
-} */
 #items {
   position: relative;
   top: 9%;
@@ -84,30 +57,17 @@ body {
 .dropdown {
   border-style: none;
 }
-/* select,option{
-position: relative;
-border-style: none;
-font-style: none;
-outline-style: none;
 
-transition: ease 500ms;
-color:#B3DEC1;
-background:transparent;
-}
-option::before{
-    background-color: transparent;
-} */
 #dropp,
-
 #dropp3 {
   overflow: visible;
   color: #b3dec1;
   border-radius: 1vh;
 }
-#dropp2{
-    overflow: visible;
-    color: #b3dec1;
-    border-radius: 1vh;
+#dropp2 {
+  overflow: visible;
+  color: #b3dec1;
+  border-radius: 1vh;
 }
 #dropp:hover,
 #dropp2:hover,
@@ -144,24 +104,25 @@ option::before{
   );
   cursor: pointer;
 }
-#room,#username{
-        position:relative;
-        background-color: transparent;
-        border-style: none;
-        cursor:default;
-        color:rgb(179, 222, 193);
-        left:10px;
-        display: none;
+#room,
+#username {
+  position: relative;
+  background-color: transparent;
+  border-style: none;
+  cursor: default;
+  color: rgb(179, 222, 193);
+  left: 10px;
+  display: none;
 }
-#dropdownMenuButton{
-    position:relative;
-    top:10px;
-    background-color: transparent;
-    outline-style: none;
-    border-style: none;
-    font-weight: medium;
-    color:rgb(179, 222, 193);
-    font-size: larger;
+#dropdownMenuButton {
+  position: relative;
+  top: 10px;
+  background-color: transparent;
+  outline-style: none;
+  border-style: none;
+  font-weight: medium;
+  color: rgb(179, 222, 193);
+  font-size: larger;
 }
 #button11:hover,
 #buttons11:hover {
@@ -200,3 +161,48 @@ option::before{
     background-position: 0% 50%;
   }
 }
+/*   ~~~OLD CSS~~~
+
+
+
+/* #username{
+  border-style: none;
+  font-style: none;
+  outline-style: none;
+  font-size: 150%;
+  width: 80%;
+  border-radius: 1vh;
+  color: #b3dec1;
+  background: rgb(33, 1, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(33, 1, 36, 1) 37%,
+    rgba(117, 13, 55, 1) 87%
+  );
+} */
+/* #username:focus,
+#username:hover {
+  content: "  ";
+  transition: 500ms;
+  font-size: 160%;
+  background: rgb(33, 1, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(33, 1, 36, 1) 37%,
+    rgba(117, 13, 55, 1) 87%
+  );
+} */
+/* select,option{
+position: relative;
+border-style: none;
+font-style: none;
+outline-style: none;
+
+transition: ease 500ms;
+color:#B3DEC1;
+background:transparent;
+}
+option::before{
+    background-color: transparent;
+} */ 
+
