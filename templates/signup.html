@@ -1,42 +1,91 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="../static/css/login.css" />
+  <link rel="stylesheet" href="../static/css/signup.css" />
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="shortcut icon" type="image/ico" href="../static/images/favicon.ico" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
   <title>Login</title>
 </head>
 
 <body>
   <div class="container">
     <div class="insider"> 
-    <h1>Signup</h1>
-    <h3>{{message}}<h3>
+    <h1>Sign Up</h1>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog " id="modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">{{message}}</h5>
+            <button type="button" class="close" data-dismiss="modal" style="color:black;" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+          Try signing in
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="moda-button2" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" id="moda-button" class="btn btn-primary" data-dismiss="modal" onclick="window.location.href='/login'" >Sign in</button>
+          </div>
+       
+      </div>
+    </div>
+    </div>
     <form action="/signup" id="myForm" method="POST">
       <input type="text" name="username" placeholder="Username" id="uname"><span class="material-icons" id="person" required>
         person
-      <br />
-      <br />
-      <input type="text" name="email" placeholder="Enter Your Email Address" id="email"><span class="material-icons" id="person" required>
-        person
-      <br/>
-      <br/>
-      <input type="password" name="password" placeholder="Password" id="pass"> <span class="material-icons" id="eye" required></span>
+       </span>
+      </input> 
+      <br>
+      <br>
+      <input type="text" name="email" placeholder="Email" id="email" required><span class="material-icons" id="mail">
+        alternate_email
+        </span>
+    </input> 
+      <br>
+      <br>
+      <input type="password" name="password" placeholder="Password" id="pass" required> <span class="material-icons" id="eye" 
           onclick="showPass() ">
           visibility_off
-      <button type="submit" id="submit">Submit</button>
+        </span>
+      </input> 
+      <button type="submit" id="submit">Sign in</button>
     </form>
+    <p id="goback">Already signed up? <a href="/login" id="goback-a">SIGN IN</a></p>
   </div>
  </div>
-  <script src="../static/js/signup.js"></script>
-
-  <button id="go back"><a href="/login"> Go back to login</a></button>
+ 
+ <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+ 
+  <script>
+            const message = '{{message}}'    
+    if (message=="User already exist"){
+      $('#exampleModal').modal('show')({
+    
+      });
+        console.log("hi");
+        
+    }
+    showPass = () => {
+      let i = document.getElementById("eye").innerHTML
+      if (i == "visibility_off") {
+        document.getElementById("eye").innerHTML = "visibility";
+        document.getElementById("pass").type = "text";
+      }
+      else {
+        document.getElementById("eye").innerHTML = "visibility_off";
+        document.getElementById("pass").type = "password";
+      }
+    };
+  </script>
 </body>
 
 </html>

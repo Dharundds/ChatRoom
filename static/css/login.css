@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
 * {
   padding: 0;
   margin: 0;
@@ -27,7 +28,7 @@ body {
   align-items: center;
 }
 
-.insider{
+.smaller-container{
 
   background: rgb(33, 1, 36);
   background: linear-gradient(
@@ -35,14 +36,14 @@ body {
     rgba(33, 1, 36, 1) 27%,
     rgba(117, 13, 55, 1) 72%
   );
-  width: 30%;
+  width: 35%;
   border-radius: 15%;
-  height: 80vh;
+  height: 85vh;
   position: inherit;
   justify-content: center;
   align-items: center;
 }
-h1,h3{
+h1{
   font-family: 'Bungee', cursive;
   color:#b3dec1;
   position: relative;
@@ -52,6 +53,7 @@ h1,h3{
   cursor: default;
 
 }
+
 #uname,#pass{
   border-style: none;
   font-style: none;
@@ -74,7 +76,14 @@ h1,h3{
 }
 #pass{
   top:150px;
+  font-family: 'Cutive Mono', monospace;
+  font-weight: bold;
 }
+#pass::placeholder{
+  font-family: "Poppins", sans-serif;
+  font-weight: normal;
+}
+
 #pass:hover,#pass:focus,#uname:focus,#uname:hover{
   font-size: 160%;
   transform:scale(1.1);
@@ -95,8 +104,8 @@ h1,h3{
   );
   cursor: pointer;
   position:relative;
-  top :230px; 
-  left:145px;
+  top :190px; 
+  left:130px;
 
 }
 h1:hover{
@@ -122,13 +131,14 @@ h1:hover{
 }
 #help{
   position:relative;
-  top:260px;
-  left:90px;
+  top:200px;
+  left:80px;
   color:rgb(179, 222, 193);
 
 }
 #help-a{
-  color:rgb(143, 16, 66);
+  /* color:rgb(143, 16, 66); */
+  color:rgb(47, 199, 118);
   text-decoration: none;
 }
 #help-a:hover{
@@ -161,3 +171,29 @@ h1:hover{
     background-position: 0% 50%;
   }
 }
+.modal-content{
+  background: linear-gradient(
+    127deg,
+    rgba(179, 222, 193, 1) 29%,
+    rgb(47, 199, 118) 99%
+  );
+  color:black;
+}
+#moda-button{
+  border-style: none;
+  background: linear-gradient(
+    302deg,
+    rgba(33, 1, 36, 1) 27%,
+    rgba(117, 13, 55, 1) 72%
+  );
+  width: 100px;
+}
+#moda-button2{
+  border-style:none;
+  background-color: rgb(97, 97, 97);
+}
+#moda-button:hover{
+  background-size: 150% 150%;
+  animation: move 3000ms ease-in-out infinite;
+}
+

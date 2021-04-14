@@ -1,9 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
-  }
+  
+}
 
 body {
     background: linear-gradient(
@@ -34,14 +36,14 @@ body {
     rgba(33, 1, 36, 1) 27%,
     rgba(117, 13, 55, 1) 72%
   );
-  width: 30%;
+  width: 35%;
   border-radius: 15%;
-  height: 80vh;
+  height: 85vh;
   position: inherit;
   justify-content: center;
   align-items: center;
 }
-h1,h3{
+h1{
   font-family: 'Bungee', cursive;
   color:#b3dec1;
   position: relative;
@@ -51,7 +53,16 @@ h1,h3{
   cursor: default;
 
 }
-#uname,#pass{
+h3{
+  font-family: 'Bungee', cursive;
+  color:#b3dec1;
+  position: relative;
+  font-weight: bold;
+  top:30px;
+  text-align: center;
+  cursor: default;
+}
+#uname,#pass,#email{
   border-style: none;
   font-style: none;
   outline-style: none;
@@ -64,34 +75,24 @@ h1,h3{
     90deg,
     rgba(33, 1, 36, 1) 37%,
     rgba(117, 13, 55, 1) 87%
-    );
-    position:relative;
-    top:130px;
-    left:30px;
-    height:9vh;
-  }
-#email{
-      border-style: none;
-      font-style: none;
-      outline-style: none;
-      font-size: 150%;
-      width: 80%;
-      border-radius: 1vh;
-      color: #b3dec1;
-      background: rgb(33, 1, 36);
-      background: linear-gradient(
-        90deg,
-        rgba(33, 1, 36, 1) 37%,
-        rgba(117, 13, 55, 1) 87%
-      
+  
   );
   position:relative;
-  top:130px;
+  top:100px;
   left:30px;
   height:9vh;
 }
 #pass{
-  top:150px;
+ 
+  font-family: 'Cutive Mono', monospace;
+  font-weight:bold;
+}
+#pass::placeholder{
+  font-family: "Poppins", sans-serif;
+  font-weight:normal;
+}
+#email{
+  top: 100px;
 }
 #pass:hover,#pass:focus,#uname:focus,#uname:hover,#email:hover,#email:focus{
   font-size: 160%;
@@ -113,8 +114,8 @@ h1,h3{
   );
   cursor: pointer;
   position:relative;
-  top :230px; 
-  left:145px;
+  top :136px; 
+  left:133px;
 
 }
 h1:hover{
@@ -138,35 +139,39 @@ h1:hover{
   background-size: 150% 150%;
   animation: move 3000ms ease-in-out infinite;
 }
-#help{
+#goback{
   position:relative;
-  top:260px;
-  left:90px;
+  top:180px;
+  left:80px;
   color:rgb(179, 222, 193);
 
 }
-#help-a{
-  color:rgb(143, 16, 66);
+#goback-a{
+  color:rgb(47, 199, 118);
   text-decoration: none;
+  
 }
-#help-a:hover{
+#goback-a:hover{
 
   transition: 100ms;
   text-decoration: underline;
   font-weight: bolder;
 }
-#person,#eye{
+#person,#eye,#mail{
   position:relative;
-  top: 135px;
+  top: 109px;
   font-size: xx-large;
  color:rgb(173, 216, 160);
  left:-10px;
   cursor:default;
 }
 #eye{
-  top:155px;
+  
   left:-15px;
   cursor:pointer;
+}
+#mail{
+  left:-9px;
 }
 @keyframes move {
   0% {
@@ -178,4 +183,29 @@ h1:hover{
   100% {
     background-position: 0% 50%;
   }
+}
+.modal-content{
+  background: linear-gradient(
+    127deg,
+    rgba(179, 222, 193, 1) 29%,
+    rgb(47, 199, 118) 99%
+  );
+  color:black;
+}
+#moda-button{
+  border-style: none;
+  background: linear-gradient(
+    302deg,
+    rgba(33, 1, 36, 1) 27%,
+    rgba(117, 13, 55, 1) 72%
+  );
+  width: 100px;
+}
+#moda-button2{
+  border-style:none;
+  background-color: rgb(97, 97, 97);
+}
+#moda-button:hover{
+  background-size: 150% 150%;
+  animation: move 3000ms ease-in-out infinite;
 }

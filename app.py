@@ -21,7 +21,7 @@ def home():
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('home'))
-    message = ''
+    message='ㅤ'
     if request.method == "POST":
         username = request.form.get('username')
         password_input = request.form.get('password')
@@ -44,11 +44,12 @@ def signup():
         password = request.form.get('password')
         email_address = request.form.get('email_address')
         user = get_user(username)
+        message='ㅤ'
         if user:
             message = 'User already exist'
         else:
             save_user(username, password,email_address)
-
+            
             return redirect(url_for('home'))
 
     return render_template('signup.html', message=message)
