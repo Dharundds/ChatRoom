@@ -21,7 +21,7 @@ def home():
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('home'))
-    message='ㅤ'
+    message = 'ㅤ'
     if request.method == "POST":
         username = request.form.get('username')
         password_input = request.form.get('password')
@@ -29,7 +29,7 @@ def login():
 
         if user and user.check_password(password_input):
             login_user(user)
-            return redirect(url_for('home',username=username))
+            return redirect(url_for('home', username=username))
         else:
             message = 'Failed to login'
 
@@ -44,12 +44,12 @@ def signup():
         password = request.form.get('password')
         email_address = request.form.get('email_address')
         user = get_user(username)
-        message='ㅤ'
+        message = 'ㅤ'
         if user:
             message = 'User already exist'
         else:
-            save_user(username, password,email_address)
-            
+            save_user(username, password, email_address)
+
             return redirect(url_for('home'))
 
     return render_template('signup.html', message=message)
@@ -67,10 +67,11 @@ def logout():
 def chat():
     username = request.args.get('username')
     room = request.args.get('room')
+    message = ''
     if username and room:
         return render_template('chat.html', username=username, room=room)
     else:
-        return redirect(url_for('home'))
+        return render_template('index.html', message='Please select the room')
 
 
 @socketio.on('send_msg')
