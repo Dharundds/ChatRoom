@@ -83,9 +83,7 @@ h1{
   font-family: 'Ubuntu', sans-serif;
   font-weight: normal;
 }
-::placeholder{
-  font-size: smaller;
-}
+
 #pass:hover,#pass:focus,#uname:focus,#uname:hover{
   font-size: 160%;
   transform:scale(1.1);
