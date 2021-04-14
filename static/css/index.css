@@ -144,7 +144,7 @@ option::before{
   );
   cursor: pointer;
 }
-#room{
+#room,#username{
         position:relative;
         background-color: transparent;
         border-style: none;
