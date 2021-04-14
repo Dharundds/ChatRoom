@@ -28,7 +28,7 @@
             </button>
           </div>
           <div class="modal-body">
-          Try signing in
+          Try signing in / use a different Username.
           </div>
           <div class="modal-footer">
             <button type="button" id="moda-button2" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -71,20 +71,22 @@
       $('#exampleModal').modal('show')({
     
       });
-        console.log("hi");
+      
         
     }
     showPass = () => {
-      let i = document.getElementById("eye").innerHTML
-      if (i == "visibility_off") {
-        document.getElementById("eye").innerHTML = "visibility";
-        document.getElementById("pass").type = "text";
-      }
-      else {
-        document.getElementById("eye").innerHTML = "visibility_off";
-        document.getElementById("pass").type = "password";
-      }
-    };
+    
+    var i = document.getElementById("pass").type;
+    if (i == "password") {
+     
+      document.getElementById("eye").innerHTML = "visibility";
+      document.getElementById("pass").type = "text";
+    }
+    else {
+      document.getElementById("eye").innerHTML = "visibility_off";
+      document.getElementById("pass").type = "password";
+    }
+  };
   </script>
 </body>
 

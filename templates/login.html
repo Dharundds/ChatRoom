@@ -36,7 +36,7 @@
               </button>
             </div>
             <div class="modal-body">
-            Invalid Password or user doesn't exist.
+            Invalid Password / Username doesn't exist.
             </div>
             <div class="modal-footer">
              
@@ -51,9 +51,11 @@
         <input type="text" name="username" placeholder="Username" id="uname"><span class="material-icons" id="person">
           person
         </span></input>
+        <br>
+        <br>
         <input type="password" name="password" placeholder="Password" id="pass"> <span class="material-icons" id="eye"
           onclick="showPass() ">
-          <br>
+          
           visibility_off
         </span></input>
         <br>
@@ -74,12 +76,13 @@
       $('#exampleModal').modal('show')({
     
       });
-        console.log("hi");
-        
+      
     }
     showPass = () => {
-      let i = document.getElementById("eye").innerHTML;
-      if (i == "visibility_off") {
+    
+      var i = document.getElementById("pass").type;
+      if (i == "password") {
+       
         document.getElementById("eye").innerHTML = "visibility";
         document.getElementById("pass").type = "text";
       }

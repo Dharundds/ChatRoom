@@ -171,6 +171,7 @@ h1:hover{
   cursor:pointer;
 }
 #mail{
+  top:107px;
   left:-9px;
 }
 @keyframes move {

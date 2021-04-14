@@ -131,7 +131,7 @@ h1:hover{
 }
 #help{
   position:relative;
-  top:200px;
+  top:215px;
   left:80px;
   color:rgb(179, 222, 193);
 
@@ -149,14 +149,14 @@ h1:hover{
 }
 #person,#eye{
   position:relative;
-  top: 135px;
+  top: 137px;
   font-size: xx-large;
  color:rgb(173, 216, 160);
  left:-10px;
   cursor:default;
 }
 #eye{
-  top:155px;
+  top:157px;
   left:-15px;
   cursor:pointer;
 }
