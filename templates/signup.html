@@ -1,39 +1,42 @@
-<!DOCTYPE html>
-<html>
+!DOCTYPE html>
+<html lang="en">
 
 <head>
-  <link rel="stylesheet" href="../static/css/signup.css" />
-  <title>Signup</title>
-  <link rel="preconnect" href="https://fonts.gstatic.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../static/css/login.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="shortcut icon" type="image/ico" href="../static/images/favicon.ico" />
-
-  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <title>Login</title>
 </head>
 
 <body>
   <div class="container">
-    <p>{{message}}</p>
+    <div class="insider"> 
+    <h1>Signup</h1>
+    <h3>{{message}}<h3>
     <form action="/signup" id="myForm" method="POST">
-      <label>Username</label><br />
-      <input type="text" name="username" id="username" placeholder="Enter your username" autocomplete="off" required />
-      <i class="fa fa-user" aria-hidden="true"></i>
+      <input type="text" name="username" placeholder="Username" id="uname"><span class="material-icons" id="person" required>
+        person
       <br />
       <br />
-      <label>Email Address</label>
-      <input type="text" name="email_address" id="email" placeholder="Enter your EmailAddress" autocomplete="off"
-        required />
-      <label>Create_Password</label><br />
-      <input type="password" name="password" id="pswrd" placeholder="password" required />
-      <i class="fas fa-eye" onclick="show()"></i>
-
-
-      <button type="submit" onclick="checkPassword()">Submit</button>
+      <input type="text" name="email" placeholder="Enter Your Email Address" id="email"><span class="material-icons" id="person" required>
+        person
+      <br/>
+      <br/>
+      <input type="password" name="password" placeholder="Password" id="pass"> <span class="material-icons" id="eye" required></span>
+          onclick="showPass() ">
+          visibility_off
+      <button type="submit" id="submit">Submit</button>
     </form>
   </div>
+ </div>
   <script src="../static/js/signup.js"></script>
 
-  <button id="button1"><a href="/login"> Go back to login</a></button>
+  <button id="go back"><a href="/login"> Go back to login</a></button>
 </body>
 
 </html>
