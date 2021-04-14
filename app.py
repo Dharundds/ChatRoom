@@ -67,7 +67,7 @@ def logout():
 def chat():
     username = request.args.get('username')
     room = request.args.get('room')
-    message = ''
+
     if username and room:
         return render_template('chat.html', username=username, room=room)
     else:
