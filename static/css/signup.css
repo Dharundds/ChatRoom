@@ -51,7 +51,6 @@ h1{
   top:30px;
   text-align: center;
   cursor: default;
-
 }
 h3{
   font-family: 'Bungee', cursive;
@@ -115,7 +114,7 @@ h3{
   cursor: pointer;
   position:relative;
   top :136px; 
-  left:133px;
+  left:123px;
 
 }
 h1:hover{
@@ -142,7 +141,7 @@ h1:hover{
 #goback{
   position:relative;
   top:180px;
-  left:80px;
+  left:100px;
   color:rgb(179, 222, 193);
 
 }
@@ -210,3 +209,110 @@ h1:hover{
   background-size: 150% 150%;
   animation: move 3000ms ease-in-out infinite;
 }
+
+@media only screen and (max-width: 750px) {
+  h1{
+    background-size: 150% 150%;
+    animation: move 3000ms ease-in-out infinite;
+  }
+  .insider{
+    width:90%;
+  }
+  #submit{
+    left:90px;  
+    top:150px;
+    background-size: 150% 150%;
+    animation: move 3000ms ease-in-out infinite;
+  }
+  #goback{
+    left:55px;
+    top: 190px;
+  }
+
+} 
+
+@media only screen and (max-width: 360px){
+  #submit{
+    left: 80px;  
+    top:110px;
+    background-size: 150% 150%;
+    animation: move 3000ms ease-in-out infinite;
+  }
+  .insider{
+    height:90%;
+    width:95%;
+  }
+  #uname{
+    top:80px;
+    left:30px;
+  }
+  #email{
+   top:75px;
+  }
+  #pass{
+    top:70px;
+  }
+  #person,#eye,#mail{
+    top:85px;
+  }
+  #eye{
+    top:75px;
+  }
+
+ #goback{
+    left:55px;
+    top:160px;
+  }
+}
+@media only screen and (max-width: 330px){
+#uname,#pass,#email{
+  top:50px;
+
+}
+#person,#eye,#mail{
+  top:57px;
+}
+
+#submit{
+  top:75px;
+  left:75px;
+  padding: 10px 30px;
+}
+#goback{
+  top:90px;
+  left:40px;
+}
+}
+@media only screen and (min-width:800px) and (max-width:890px) {
+  .insider{
+    width:70%;
+  }
+  #uname,#pass,#email{
+    left:50px;
+    top:150px;
+}
+
+ #person{
+   top:165px;
+   font-size:3.0rem;
+ }
+ #mail{
+   top:160px;
+   font-size:2.7rem;
+ }
+ #eye{
+   top:160px;
+   font-size:2.7rem;
+ }
+ #submit{
+  top:200px;
+  left:175px;
+  
+}
+#goback{
+  top:270px;
+  left:140px;
+}
+
+}
+
