@@ -16,21 +16,15 @@
       Log out
     </button>
     <header class="chat-header">
-      <h1>Room :{{room.name}}</h1>
+      <h1>Room :{{room}}</h1>
       <button type="button" id="btn">Leave Room</button>
     </header>
-    <!--ginger template-->
-    <div id="messages">
-      {% for message in messages %}
-        <div><b>{{message.sender}}&nbsp;[{{message.created_at}}]:&nbsp;</b> {{message.text}}</div>
-      {% endfor %}
-    </div>
+    <div id="messages"></div>
   </div>
   <form id="chatform">
     <input type="text" id="msg" placeholder="Type your text here" autocomplete="off" />
     <button type="submit" id="btn">Send</button>
   </form>
-
   <ul>
     {% for member in room_members %}
       <li>{{ member._id.username}}</li>
@@ -47,7 +41,7 @@
     socket.on("connect", function () {
       socket.emit("join_room", {
         username: "{{username}}",
-        room: "{{room._id}}",
+        room: "{{room}}",
       });
 
       let msg_input = document.getElementById("msg");
@@ -58,7 +52,7 @@
         if (message.length) {
           socket.emit("send_msg", {
             username: "{{username}}",
-            room: "{{room._id}}",
+            room: "{{room}}",
             message: message,
           });
         }
@@ -70,7 +64,7 @@
       leave.onclick = function (e) {
         socket.emit("leave_room", {
           username: "{{username}}",
-          room: "{{room._id}}",
+          room: "{{room}}",
         });
         socket.disconnect();
         window.location.href = "{{url_for('home')}}";
@@ -80,14 +74,14 @@
     socket.on("receive_msg", function (data) {
       console.log(data);
       const newNode = document.createElement("div");
-      newNode.innerHTML = `<b>${data.username}&nbsp;[${data.created_at}]:&nbsp;</b> ${data.message}`;
+      newNode.innerHTML = `<b>${data.username}:&nbsp;</b> ${data.message}`;
       document.getElementById("messages").appendChild(newNode);
     });
 
-    socket.on("join_room_announcement", function (data,messages) {
+    socket.on("join_room_announcement", function (data) {
       console.log(data);
       const newNode = document.createElement("div");
-      newNode.innerHTML = `<b>${data.username}</b> has joined the room `;
+      newNode.innerHTML = `<b>${data.username}</b> has joined the room`;
       document.getElementById("messages").appendChild(newNode);
     });
     socket.on("leave_room_announcement", function (data) {
