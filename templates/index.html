@@ -31,7 +31,7 @@
           >
             logout
           </button>
-           {% else %}<button id="buttons11" onclick="login()">login</button>{%
+          {% else %}<button id="buttons11" onclick="login()">login</button>{%
           endif %}
         </div>
         <p id="header1">
@@ -39,79 +39,15 @@
           {% else %} Welcome,<br />
           Guest{% endif %} !!
         </p>
-        <h2>{{message}}</h2>
-        <div id="items">
-          <form action="/chat" class="myForm">
-            <input
-              type="text"
-              name="username"
-              id="username"
-              placeholder="Guest"
-              value="{{current_user.username}}"
-              readonly
-            />
-            <div class="select">
-              <input type="text" id="room" name="room" readonly />
-            </div>
-            <div class="dropdown" name="room">
-              <button
-                class="btn btn-secondary dropdown-toggle roomname"
-                type="button"
-                id="dropdownMenuButton"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-                name="room"
-              >
-                Select Room
-              </button>
-              <div
-                class="dropdown-menu"
-                aria-labelledby="dropdownMenuButton"
-                id="ddm"
-              >
-                <button
-                  id="dropp"
-                  class="dropdown-item"
-                  type="button"
-                  value="Admin"
-                  onclick="selectRoom()"
-                >
-                  Room1(Admin)
-                </button>
-                <button
-                  id="dropp2"
-                  class="dropdown-item dropp"
-                  type="button"
-                  value="Room2"
-                  onclick="Room2()"
-                >
-                  Room2
-                </button>
-                <button
-                  id="dropp3"
-                  class="dropdown-item"
-                  type="button"
-                  value="Room3"
-                  onclick="Room3()"
-                >
-                  Room3
-                </button>
-              </div>
-            </div>
-            <!--  <label>Room</label>
-            <select name="room" id="room">
-              <option value="none"></option>
-              <option value="Admin">Room1(Admin)</option>
-              <option value="room2">Room2</option>
-              <option value="room3">Room3</option>
-            </select> -->
-            <div class="join">
-              <button type="submit" id="join">Join Chat</button>
-            </div>
-          </form>
-          <br />
-        </div>
+        <!--Room list-->
+        <ul>
+          {% for room in rooms %}
+          <li>
+            <a href="/rooms/{{room._id.room_id}}/"> {{ room.room_name }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+        <button onclick="createRoom()">Create Room</button>
       </div>
     </div>
 
@@ -137,6 +73,9 @@
       };
       login = () => {
         window.location.href = "{{url_for('login')}}";
+      };
+      createRoom = () => {
+        window.location.href = "{{url_for('create_room')}}";
       };
     </script>
   </body>
