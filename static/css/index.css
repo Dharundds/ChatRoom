@@ -29,7 +29,7 @@ body {
     rgba(117, 13, 55, 1) 72%
   );
   width: 60%;
-  border-radius: 15%;
+  border-radius: 7vh;
   height: 80vh;
   position: inherit;
   justify-content: center;
@@ -96,6 +96,7 @@ body {
 #button11,
 #buttons11 {
   border-radius: 1vh;
+  border-style: none;
   padding: 15px 32px;
   background: rgb(179, 222, 193);
   background: linear-gradient(
@@ -162,6 +163,51 @@ body {
     background-position: 0% 50%;
   }
 }
+@media only screen and (max-width: 890px) {
+  .textss{
+    width:100%;
+    border-radius: 7vh;
+  }
+  .buttons{
+    top:20px;
+    left:65%;
+    border-radius: 7vh;
+    
+  }
+  #button11,
+#buttons11 {
+  border-radius: 7vh;
+  background-size: 150% 150%;
+  animation: move 3000ms ease-in-out infinite;
+}
+.join{
+  left:20%;
+  
+  margin-top:120px;
+}
+#join{
+  border-radius: 7vh;
+  background-size: 150% 150%;
+  animation: move 3000ms ease-in-out infinite;
+}
+body{
+background-size:300% 300%;
+}
+}
+
+@media only screen and (max-width: 360px){
+  .join{
+    left:50%;
+    
+    margin-top:0px;
+  }
+  #join{
+    padding: 15px 35px;
+  }
+}
+
+
+
 /*   ~~~OLD CSS~~~
 
 

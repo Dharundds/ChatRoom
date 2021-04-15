@@ -37,7 +37,7 @@ body {
     rgba(117, 13, 55, 1) 72%
   );
   width: 35%;
-  border-radius: 15%;
+  border-radius: 7vh;
   height: 85vh;
   position: inherit;
   justify-content: center;

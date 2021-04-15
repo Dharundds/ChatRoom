@@ -37,7 +37,7 @@ body {
     rgba(117, 13, 55, 1) 72%
   );
   width: 35%;
-  border-radius: 15%;
+  border-radius: 7vh;
   height: 85vh;
   position: inherit;
   justify-content: center;
@@ -196,4 +196,87 @@ h1:hover{
   background-size: 150% 150%;
   animation: move 3000ms ease-in-out infinite;
 }
+@media only screen and (max-width: 750px) {
+  h1{
+    background-size: 150% 150%;
+    animation: move 3000ms ease-in-out infinite;
+  }
+  .smaller-container{
+    width:90%;
+  }
+  #submit{
+    left:90px;  
+    top:200px;
+    background-size: 150% 150%;
+    animation: move 3000ms ease-in-out infinite;
+  }
+  #help{
+    left:60px;
+    top:225px;
+  }
 
+} 
+
+@media only screen and (max-width: 360px){
+  #submit{
+    left:90px;  
+    top:200px;
+    background-size: 150% 150%;
+    animation: move 3000ms ease-in-out infinite;
+  }
+  #help{
+    left:40px;
+    top:230px;
+  }
+}
+@media only screen and (max-width: 330px){
+  #uname,#pass{
+    top:80px;
+
+}
+#person,#eye{
+  top:85px;
+}
+#eye{
+  top:88px;
+}
+#submit{
+  top:100px;
+  left:70px;
+  padding: 10px 30px;
+}
+#help{
+  top:90px;
+  left:20px;
+}
+}
+@media only screen and (min-width:800px) and (max-width:890px) {
+  .smaller-container{
+    width:70%;
+  }
+  #uname,#pass{
+    left:40px;
+    top:200px;
+
+}
+#pass{
+  top:230px;
+}
+ #person,#eye{
+   top:210px;
+   font-size:2.7rem;
+
+ }
+ #eye{
+   top:245px;
+ }
+ #submit{
+  top:330px;
+  left:170px;
+  
+}
+#help{
+  top:405px;
+  left:130px;
+}
+}
