@@ -39,15 +39,66 @@
           {% else %} Welcome,<br />
           Guest{% endif %} !!
         </p>
+        {% if current_user.is_authenticated %}
+    
+       
+        <div class="dropdown" name="room">
+          <button
+            class="btn btn-secondary dropdown-toggle roomname"
+            type="button"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            name="room"
+          >
+            Select Room
+          </button>
+          <div
+            class="dropdown-menu"
+            aria-labelledby="dropdownMenuButton"
+            id="ddm"
+          >
+      
         <!--Room list-->
-        <ul>
+        
+          {% if have_rooms == True %}
           {% for room in rooms %}
+        <ul style=" color:rgba(179, 222, 193, 1) ;list-style-type:none; " > 
           <li>
-            <a href="/rooms/{{room._id.room_id}}/"> {{ room.room_name }}</a>
+            <a  id="dropp"
+            class="dropdown-item"
+            type="button"
+            onclick="selectRoom()" href="/rooms/{{room._id.room_id}}/"> {{ room.room_name }}</a>
           </li>
-          {% endfor %}
         </ul>
-        <button onclick="createRoom()">Create Room</button>
+          {% endfor %}
+          {% else %}
+          
+            <ul style=" color:rgba(179, 222, 193, 1) ;list-style:none ;  " >
+              <li>
+          <a id="dropp"
+          class="dropdown-item"
+          type="button"id="join" onclick="createRoom()">+ Add Room</a></li>
+          {%endif %}
+          
+
+        </ul>
+        {% else %}
+          <abbr id="help" onclick="loginer()" title="click 7 times or more to login :P" > Please Login to unlock more stuff ;)</abbr>
+        {%endif %}
+      </div>
+    </div>
+    {% if have_rooms == True  %}
+    <button class="join" id="join" onclick="createRoom()">Create Room</button>
+     {% else %}
+     {% if current_user.is_authenticated %}
+    
+    
+     {% else %}
+
+            {%endif %}
+            {%endif %} 
       </div>
     </div>
 
@@ -68,6 +119,7 @@
     ></script>
     <script src="../static/js/index.js"></script>
     <script>
+      var i=0;
       logout = () => {
         window.location.href = "{{url_for('logout')}}";
       };
@@ -77,6 +129,13 @@
       createRoom = () => {
         window.location.href = "{{url_for('create_room')}}";
       };
+      loginer = () => {
+        i++;
+        if (i>=7){
+          login()
+        }
+      };
+
     </script>
   </body>
 </html>

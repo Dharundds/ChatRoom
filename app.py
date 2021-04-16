@@ -19,9 +19,16 @@ login_manager.init_app(app)
 @app.route('/')
 def home():
     rooms = []
+    have_rooms=False
+
     if current_user.is_authenticated:
         rooms = get_rooms_for_user(current_user.username)
-    return render_template('index.html', rooms=rooms)
+        a=len(rooms)
+        if a == 0:
+            have_rooms=False
+        else:
+            have_rooms=True   
+    return render_template('index.html', rooms=rooms,have_rooms=have_rooms)
 
 
 @app.route('/login', methods=["GET", "POST"])

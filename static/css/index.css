@@ -81,12 +81,26 @@ body {
   color: black;
 }
 #ddm {
-  overflow: auto;
+  overflow-y: scroll;
+  max-height: 16vh;
+  white-space: nowrap;
   background-color: transparent;
   text-align: left;
   /* border-color: rgb(33,1,36);
     border-width: 2px; */
   border-style: none;
+}
+ #ddm::-webkit-scrollbar {
+
+  width: 2px;
+
+}
+#dmm::-webkit-scrollbar-track {
+  background:transparent;        /* color of the tracking area */
+}
+#ddm::-webkit-slider-thumb{
+  background-color: rgb(204, 204, 204);
+  border-radius: 9vh;
 }
 .buttons {
   position: relative;
@@ -118,7 +132,8 @@ body {
 }
 #dropdownMenuButton {
   position: relative;
-  top: 10px;
+  top: 40px;
+  left: 4%;
   background-color: transparent;
   outline-style: none;
   border-style: none;
@@ -152,6 +167,13 @@ body {
   background-size: 150% 150%;
   animation: move 3000ms ease-in-out infinite;
 }
+#help{
+  position: relative;
+  color: #b3dec1;
+  top:100px;
+  left:100px;  
+  font-size: large;
+}
 @keyframes move {
   0% {
     background-position: 0% 50%;
@@ -183,7 +205,7 @@ body {
 .join{
   left:20%;
   
-  margin-top:120px;
+  margin-top:140px;
 }
 #join{
   border-radius: 7vh;
@@ -197,17 +219,46 @@ background-size:300% 300%;
 
 @media only screen and (max-width: 360px){
   .join{
-    left:50%;
+    left:90%;
     
-    margin-top:0px;
+    top:-20px;
   }
   #join{
     padding: 15px 35px;
   }
+  #ddm{
+    background-color: rgba(255, 255, 255, 0.274);
+  }
+  #help{
+    left:20px;
+  }
 }
-
-
-
+@media only screen and (max-width: 320px){
+  #help{
+    left:0px;
+  }
+  .join{
+    left:50%;
+    
+    margin-top:0px;
+  }
+  #ddm{
+    background-color: rgba(255, 255, 255, 0.274);
+  }
+}
+@media only screen and (max-width: 750px){
+  #help{
+    left:20px;
+  }
+  .join{
+    left:20%;
+    
+    margin-top:170px;
+  }
+  #ddm{
+    background-color: rgba(255, 255, 255, 0.274);
+  }
+}
 /*   ~~~OLD CSS~~~
 
 
