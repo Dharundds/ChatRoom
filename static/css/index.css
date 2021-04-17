@@ -217,7 +217,8 @@ body {
   border-style:solid;
   border-color:rgba(33, 1, 36, 1);
   left:10px;
-  height:9vh;
+  height:7vh;
+  color:rgba(33, 1, 36, 1);
    
   
 }
@@ -237,7 +238,7 @@ body {
   top:20px;
 }
 .modal-body{
-  height:30vh;
+  height:25vh;
 }
 @keyframes move {
   0% {
