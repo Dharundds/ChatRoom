@@ -109,17 +109,18 @@
                   <div class="modal-body">
                     
                     
-                    <form method="post">
+                    <form  method="POST">
                       <input type="text" placeholder="Room Name" autocomplete="off" name="room_name" id="room-name"/>
                       <br>
                      <input type="text" name="members" placeholder="Members" autocomplete="off" id="room-members" />
-                                 
-                </div>
+                               
+                    
                   <div class="modal-footer">
                    
                   <button type="button" id="moda-button2" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                  <button type="submit" id="moda-button" class="btn btn-primary" data-dismiss="modal"  >Create!</button>
+                  <button type="submit" class="btn btn-primary"   onclick="console.log('clicked')" >Create!</button>
                 </form>  
+              </div>
                   </div>
 
    <!-- <h1 id="create-room">Create Room</h1>
@@ -150,6 +151,7 @@
       createRoom = () => {
         $("#exampleModal").modal('show');
         // document.getElementById("textss").style.display="none";
+       
       };
       loginer = () => {
         i++;

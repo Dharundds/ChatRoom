@@ -19,16 +19,16 @@ login_manager.init_app(app)
 @app.route('/')
 def home():
     rooms = []
-    have_rooms=False
+    have_rooms = False
 
     if current_user.is_authenticated:
         rooms = get_rooms_for_user(current_user.username)
-        a=len(rooms)
+        a = len(rooms)
         if a == 0:
-            have_rooms=False
+            have_rooms = False
         else:
-            have_rooms=True   
-    return render_template('index.html', rooms=rooms,have_rooms=have_rooms)
+            have_rooms = True
+    return render_template('index.html', rooms=rooms, have_rooms=have_rooms)
 
 
 @app.route('/login', methods=["GET", "POST"])
@@ -91,7 +91,7 @@ def create_room():
                 usernames.remove(current_user.username)
             add_room_members(room_id, room_name, usernames,
                              current_user.username)
-            return redirect(url_for('cautocomplete="off"hat_room', room_id=room_id))
+            return redirect(url_for('chat_room', room_id=room_id))
         else:
             message = 'Failed to Create room'
 
