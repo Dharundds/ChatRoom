@@ -76,7 +76,7 @@ def logout():
     return redirect(url_for('home'))
 
 
-@app.route('/create-room/', methods=["GET", "POST"])
+@app.route('/', methods=["GET", "POST"])
 @login_required
 def create_room():
     message = ''
@@ -91,11 +91,11 @@ def create_room():
                 usernames.remove(current_user.username)
             add_room_members(room_id, room_name, usernames,
                              current_user.username)
-            return redirect(url_for('chat_room', room_id=room_id))
+            return redirect(url_for('cautocomplete="off"hat_room', room_id=room_id))
         else:
             message = 'Failed to Create room'
 
-    return render_template('create_room.html', message=message)
+    return render_template('index.html', message1=message)
 
 
 @app.route('/rooms/<room_id>/edit', methods=["POST", "GET"])

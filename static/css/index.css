@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,500;1,500&display=swap');
 * {
   font-family: 'Ubuntu', sans-serif;
+  
 }
 body {
   background: #210124;
@@ -42,7 +43,7 @@ body {
   left: 5%;
 }
 ::placeholder {
-  color: grey;
+  color: rgb(75, 74, 74);
   font-size: smaller;
 }
 #header1 {
@@ -173,6 +174,70 @@ body {
   top:100px;
   left:100px;  
   font-size: large;
+}
+.modal-content{
+  background: linear-gradient(
+    127deg,
+    rgba(179, 222, 193, 1) 29%,
+    rgb(47, 199, 118) 99%
+  );
+  color:black;
+}
+#moda-button{
+  border-style: none;
+  background: linear-gradient(
+    302deg,
+    rgba(33, 1, 36, 1) 27%,
+    rgba(117, 13, 55, 1) 72%
+  );
+  width: 100px;
+}
+#moda-button2{
+  border-style:none;
+  background-color: rgb(97, 97, 97);
+}
+#moda-button:hover{
+  background-size: 150% 150%;
+  animation: move 3000ms ease-in-out infinite;
+}
+.modal-body input{
+  
+  font-style: none;
+  outline-style: none;
+  font-size: 150%;
+  width: 80%;
+  border-radius: 1vh;
+  color: #b3dec1;
+  background: linear-gradient(
+    233deg,
+    rgba(179, 222, 193, 1) 29%,
+    rgb(47, 199, 118) 99%
+  );
+  position:relative;
+  border-style:solid;
+  border-color:rgba(33, 1, 36, 1);
+  left:10px;
+  height:9vh;
+   
+  
+}
+#exampleModalLabel{
+  background: linear-gradient(
+    302deg,
+    rgba(33, 1, 36, 1) 27%,
+    rgba(117, 13, 55, 1) 72%
+  );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 150% 150%;
+    animation: move 3000ms ease-in-out infinite;
+}
+#room-members{
+  position:relative;
+  top:20px;
+}
+.modal-body{
+  height:30vh;
 }
 @keyframes move {
   0% {
