@@ -93,15 +93,16 @@ body {
 }
  #ddm::-webkit-scrollbar {
 
-  width: 2px;
+  width: 10px;
 
 }
-#dmm::-webkit-scrollbar-track {
-  background:transparent;        /* color of the tracking area */
-}
+
 #ddm::-webkit-slider-thumb{
   background-color: rgb(204, 204, 204);
-  border-radius: 9vh;
+  border-radius: 3vh;
+}
+#dmm::-webkit-scrollbar-track {
+  background:rgba(255, 255, 255, 0.76);        /* color of the tracking area */
 }
 .buttons {
   position: relative;
@@ -174,6 +175,7 @@ body {
   top:100px;
   left:100px;  
   font-size: large;
+ texta-decoration:none;
 }
 .modal-content{
   background: linear-gradient(

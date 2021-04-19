@@ -132,12 +132,13 @@ def edit_room(room_id):
 
 @app.route('/rooms/<room_id>/')
 @login_required
-def chat_room(room_id):
+def chat_room(room_id): 
+    rooms = get_rooms_for_user(current_user.username)
     room = get_room(room_id)
     if room and is_room_member(room_id, current_user.username):
         room_members = get_room_members(room_id)
         messages = get_messages(room_id)
-        return render_template('chat.html', username=current_user.username, room=room, room_members=room_members, room_id=room_id, messages=messages)
+        return render_template('chat.html',rooms=rooms, username=current_user.username, room=room, room_members=room_members, room_id=room_id, messages=messages)
     else:
         return "Room not found", 404
 
