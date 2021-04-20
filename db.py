@@ -4,7 +4,6 @@ from pymongo import MongoClient
 from werkzeug.security import generate_password_hash
 from user import User
 
-
 client = MongoClient(
     "mongodb+srv://Centigrade:Centigrade@centigrade-chatroom.l4cxo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 
@@ -64,10 +63,37 @@ def add_room_members(room_id, room_name, usernames, added_by):
         'is_room_admin': False} for username in usernames])
 
 
+def update_admin(room_id, username):
+    if username:
+        room_members_collections.update_many({
+            '_id': {'room_id': ObjectId(room_id), 'username': username}}, {'$set': {'is_room_admin': True}}
+        )
+    else:
+        pass
+
+
+def remove_admin(room_id, username):
+    if username:
+        room_members_collections.update_one({
+            '_id': {'room_id': ObjectId(room_id), 'username': username}}, {'$set': {'is_room_admin': False}}
+        )
+    else:
+        pass
+
+
 def remove_room_members(room_id, usernames):
     # $in multiple  values that can be taken by _id
     room_members_collections.delete_many(
         {'_id': {'$in': [{'room_id': room_id, 'username': username} for username in usernames]}})
+
+
+def remove_room_member(room_id, username):
+    room_members_collections.delete_one({
+        '_id': {
+            'room_id': ObjectId(room_id),
+            'username': username
+        }
+    })
 
 
 def get_room_members(room_id):
@@ -94,7 +120,9 @@ def save_msg(room_id, text, sender):
 
 
 def get_messages(room_id):
+
     messages = list(messages_collections.find({'room_id': room_id}))
     for message in messages:
         message['created_at'] = message['created_at'].strftime('%d %b, %H:%M')
+
     return messages

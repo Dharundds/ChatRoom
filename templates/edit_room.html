@@ -4,15 +4,91 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/css/edit_room.css" />
     <title>Edit</title>
   </head>
   <body>
     <h1>{{message}}</h1>
     <form method="post">
       Room Name:<input type="text" name="room_name" value="{{ room.name }}" />
-      Members:<input type="text" name="members" value="{{ room_members }}" />
+      <!--Editing room members name-->
+      Edit Room members :<select name="edit_members" id="em" aria-readonly="true">
+        <option>
+          {% for member in members %}
+          <option>{{ member._id.username }}</option>
+          {% endfor %}
+        </option>
+      </select>
+      <button type="button" onclick="editIt()">edit</button>
+      <div class="edit">
+        <input type="text" name="edit" id='edit'>
+      </div>
+
+      <!--adding members-->
+      <button type="button" onclick="add_mem()">Add members</button>
+      <div class="addmem">
+        Add Members: <input type="text" name='addmember' id='addmem' placeholder="enter the username..... ">
+      </div>      
+
+      <!--Removing members-->
+      <button type='button' onclick="remove_mem()">Remove Members</button>
+      <div class="removemem">
+        Remove Members:
+        <select name="remove" name='removemember' id="remove" >
+          <option></option>
+          {% for member in members %}
+          <option>{{member._id.username}}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <!--Make or remove member as Admin-->
+      <button type="button" id="admins" onclick="show()">
+        Make/Remove Admin
+      </button>
+      <div class="admin">
+        Remove admin:
+        <select name="removeAdmin" id="ra">
+          <option></option>
+          {% for admin in admins %}
+          <option>{{admin}}</option>
+          {% endfor %}
+        </select>
+        Make Admin:
+        <select name="makeAdmin" id="ma">
+          <option></option>
+          {% for notadmin in not_admin %}
+          <option>{{notadmin}}</option>
+          {% endfor %}
+        </select>
+      </div>
       <button type="submit">Submit</button>
     </form>
     <button><a href="/rooms/{{room_id}}"> Go back to chat</a></button>
+
+    <script>
+      show = () => {
+        const admin = document.querySelector(".admin");
+        admin.classList.add("show");
+      };
+      editIt = () => {
+        let edit = document.getElementById('em');
+        const edit_field = document.querySelector('.edit')
+        let field = document.getElementById('edit')
+        field.value = edit.value
+        edit_field.classList.add('show')
+      }
+
+      add_mem = () =>{
+        const add_mem = document.querySelector(".addmem");
+        add_mem.classList.add("show")
+      }
+
+      remove_mem = () =>{
+        const add_mem = document.querySelector(".removemem");
+        add_mem.classList.add("show")
+      }
+
+    </script>
   </body>
 </html>

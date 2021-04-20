@@ -1,0 +1,34 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.admin {
+  visibility: hidden;
+}
+
+.admin.show {
+  visibility: visible;
+}
+
+.edit {
+  visibility: hidden;
+}
+
+.edit.show {
+  visibility: visible;
+}
+
+.addmem {
+  visibility: hidden;
+}
+.addmem.show {
+  visibility: visible;
+}
+
+.removemem {
+  visibility: hidden;
+}
+.removemem.show {
+  visibility: visible;
+}

@@ -3,7 +3,7 @@ from flask_login import LoginManager, current_user, login_required, login_user, 
 from flask_socketio import SocketIO, join_room, leave_room, send
 from db import (add_room_members, get_messages, get_user, save_msg, save_room,
                 save_user, get_rooms_for_user, get_room, is_room_member,
-                get_room_members, is_room_admin, update_room, remove_room_members)
+                get_room_members, is_room_admin, update_room, remove_room_members, update_admin, remove_admin, add_room_member, remove_room_member)
 from datetime import datetime
 from bson.json_util import dumps
 
@@ -102,29 +102,48 @@ def create_room():
 @login_required
 def edit_room(room_id):
     room = get_room(room_id)
+    admins = []
+    not_admin = []
     if room and is_room_admin(room_id, current_user.username):
-        exist_members = [member['_id']['username']
-                         for member in get_room_members(room_id)]
-        room_members = ','.join(exist_members)
         message = ''
+        members = get_room_members(room_id)
+        for member in members:
+            if is_room_admin(room_id, member['_id']['username']):
+                admins.append(member['_id']['username'])
+            else:
+                not_admin.append(member['_id']['username'])
         if request.method == "POST":
             room_name = request.form.get('room_name')
             room['name'] = room_name
             update_room(room_id, room_name)
+            make_admin = request.form.get('makeAdmin')
+            removeAdmin = request.form.get('removeAdmin')
+            edit_member = request.form.get('edit_members')
+            edited_member = request.form.get('edit')
+            add_member = request.form.get('addmember')
+            remove_member = request.form.get('removemember')
 
-            new_members = [username.strip()
-                           for username in request.form.get('members').split(',')]
-            members_to_add = list(set(new_members)-set(exist_members))
-            members_to_remove = list(set(exist_members)-set(new_members))
-            if len(members_to_add):
-                add_room_members(room_id, room_name,
-                                 members_to_add, current_user.username)
-            if len(members_to_remove):
-                remove_room_members(room_id, members_to_remove)
+            if len(make_admin):
+                update_admin(room_id, make_admin)
+            if len(removeAdmin):
+                remove_admin(room_id, removeAdmin)
+            if len(edit_member):
+                remove_room_members(room_id, edit_member)
+                if len(edited_member):
+                    add_room_member(room_id, room_name,
+                                    edited_member, current_user.username)
+            if add_member:
+                add_mems = [username.strip()
+                            for username in add_member.split(',')]
+                add_room_members(room_id, room_name, add_mems,
+                                 current_user.username)
+            if remove_member:
+                print('hi')
+                remove_room_member(room_id, remove_member)
+
             message = "Edited Successfully"
-            room_members = ','.join(new_members)
 
-        return render_template('edit_room.html', room=room, room_members=room_members, room_id=room_id, message=message)
+        return render_template('edit_room.html', not_admin=not_admin, admins=admins, room=room, members=members, room_id=room_id, message=message)
 
     else:
         return "Room not found", 404
@@ -132,13 +151,13 @@ def edit_room(room_id):
 
 @app.route('/rooms/<room_id>/')
 @login_required
-def chat_room(room_id): 
+def chat_room(room_id):
     rooms = get_rooms_for_user(current_user.username)
     room = get_room(room_id)
     if room and is_room_member(room_id, current_user.username):
         room_members = get_room_members(room_id)
         messages = get_messages(room_id)
-        return render_template('chat.html',rooms=rooms, username=current_user.username, room=room, room_members=room_members, room_id=room_id, messages=messages)
+        return render_template('chat.html', rooms=rooms, username=current_user.username, room=room, room_members=room_members, room_id=room_id, messages=messages)
     else:
         return "Room not found", 404
 
