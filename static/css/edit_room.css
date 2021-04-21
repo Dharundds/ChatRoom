@@ -50,3 +50,10 @@ body {
     background-position: 0% 50%;
   }
 }
+
+.check {
+  visibility: hidden;
+}
+.check.show {
+  visibility: visible;
+}
