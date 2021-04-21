@@ -121,7 +121,7 @@ def edit_room(room_id):
             edit_member = request.form.get('edit_members')
             edited_member = request.form.get('edit')
             add_member = request.form.get('addmember')
-            remove_member = request.form.get('removemember')
+            rem_mem = request.form.get('removemember')
 
             if len(make_admin):
                 update_admin(room_id, make_admin)
@@ -137,10 +137,11 @@ def edit_room(room_id):
                             for username in add_member.split(',')]
                 add_room_members(room_id, room_name, add_mems,
                                  current_user.username)
-            if remove_member:
+            if rem_mem==True:
                 print('hi')
-                remove_room_member(room_id, remove_member)
-
+                remove_room_member(room_id, rem_mem)
+            else:
+                print(rem_mem)
             message = "Edited Successfully"
 
         return render_template('edit_room.html', not_admin=not_admin, admins=admins, room=room, members=members, room_id=room_id, message=message)
@@ -154,10 +155,18 @@ def edit_room(room_id):
 def chat_room(room_id):
     rooms = get_rooms_for_user(current_user.username)
     room = get_room(room_id)
+    admins=[]
+    not_admin=[]
     if room and is_room_member(room_id, current_user.username):
         room_members = get_room_members(room_id)
+        for member in room_members:
+            if is_room_admin(room_id, member['_id']['username']):
+                admins.append(member['_id']['username'])
+            else:
+                not_admin.append(member['_id']['username'])
+        
         messages = get_messages(room_id)
-        return render_template('chat.html', rooms=rooms, username=current_user.username, room=room, room_members=room_members, room_id=room_id, messages=messages)
+        return render_template('chat.html',admins=admins, rooms=rooms, username=current_user.username, not_admin=not_admin,room=room, room_members=room_members, room_id=room_id, messages=messages)
     else:
         return "Room not found", 404
 

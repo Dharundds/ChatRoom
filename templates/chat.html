@@ -104,22 +104,30 @@
         </div>
           <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
             <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Colored with scrolling</h5>
+              <h3 class="offcanvas-title" id="offcanvasScrollingLabel">Colored with scrolling</h3>
               <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             
           </div>
           <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasWithBackdrop" aria-labelledby="offcanvasWithBackdropLabel">
             <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="offcanvasWithBackdropLabel">Members</h5>
+              <h3 class="offcanvas-title" id="offcanvasWithBackdropLabel">Members</h3>
               <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
-              <p><ul>
+              <p>
+              <h5>Admin</h5>
+              <ul> 
                 {% for member in room_members %}
-                <li>{{ member._id.username}}</li>
+           
+              <li>{{ member._id.username}}</li>
                 {% endfor %}
               </ul></p>
+              <ul>
+                {% for admin in admins %}
+                <li>{{admin}}</li>
+                {% endfor %}
+              </ul>
             </div>
           </div>
           
@@ -127,9 +135,10 @@
         
      
       <div class="rooms-div">
+        <h3> Your Rooms</h3><br>
         <ul>
           {% for room in rooms %}
-            <li><a style="text-decoration:none;color:rgba(90, 194, 138, 1);" id="room-li" onclick="selectRoom()" href="/rooms/{{room._id.room_id}}/"> {{ room.room_name }}</a></li>
+            <li><a style="text-decoration:none;color:rgba(90, 194, 138, 1);" id="room-li" onclick="selectRoom()" href="/rooms/{{room._id.room_id}}/"> {{ room.room_name }}</a></li><br>
           {% endfor %}
         </ul>
       </div>
@@ -153,9 +162,10 @@
       socket.on("connect", function () {
         socket.emit("join_room", {
           username: "{{username}}",
+
           room: "{{room._id}}",
         });
-
+        
         let msg_input = document.getElementById("msg");
 
         document.getElementById("chatform").onsubmit = function (e) {
@@ -187,6 +197,7 @@
       socket.on("receive_msg", function (data) {
         console.log(data);
         const newNode = document.createElement("span");
+        
         newNode.innerHTML = `<p id="sent-messages"><b>${data.username}&nbsp;</b> <em>${data.created_at}&nbsp;</em><br>${data.message}<br></p>`;
         document.getElementById("all-messages").appendChild(newNode);
         let chatMessage = document.getElementById('all-messages');

@@ -264,15 +264,16 @@ border-right: none;
 #sent-messages{
   color:blue;
   position:relative;
-  left:50%;
+  left:52%;
   margin-right: 20px;
-  width:50%;
+  width:45%;
   border-radius: 2vh;
   padding: 4px;
   padding-left: 7px;
   
   background-color: rgba(127, 128, 129, 0.384);
 }
+
 #all-messages{
   
   height: 100%;
@@ -284,15 +285,15 @@ border-right: none;
 
   
 }
-#all-messages::-webkit-scrollbar{
+::-webkit-scrollbar{
   width:10px;
   
 }
-#all-messages::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb{
   background: rgba(136, 136, 136, 0.808);
   border-radius: 3vh;
 }
-#all-messages::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background: #f1f1f100;
 }
 
@@ -303,18 +304,21 @@ border-right: none;
   
   background-color: rgba(127, 128, 129, 0.384);
 
-  margin-left:20px;
+  margin-left:14px;
   color:whitesmoke;
   padding-left: 7px;
 }
-#all-messages b{
-  color:azure;
+#recieved-messages b{
+  color:rgb(160, 245, 157);
 }
 #all-messages em{
   font-weight: lighter;
   font-size:small ;
   font-style: normal;
   color:rgba(128, 128, 128, 0.671);
+}
+#sent-messages b{
+  color:rgb(245, 189, 240)
 }
 #start{
   position: relative;
@@ -325,4 +329,37 @@ border-right: none;
   position:relative;
   left: -10px;
   top:2px;
+}
+#all-messages p{
+  color: rgb(232, 243, 232);
+}
+#gopal b{
+  color:mediumseagreen;
+}
+.rooms-div h3{
+  
+  position:relative;
+  left:10px;
+  top:22px;
+  width:fit-content;
+  border-radius: 3vh;
+  padding: 4px;
+}
+.rooms-div h3:hover{
+  transition: 500ms;
+  color:black;
+  background: linear-gradient(
+  127deg,
+  rgba(179, 222, 193, 1) 29%,
+  rgba(90, 194, 138, 1) 99%
+);
+background-size:150% 150%;
+animation: move 3000ms ease-in-out infinite;
+  
+}
+.rooms-div ul{
+  position:relative;
+  left:15px;
+  top:20px;
+  overflow-y:scroll;
 }
