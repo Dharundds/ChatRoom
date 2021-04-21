@@ -1,34 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,500;1,500&display=swap');
 * {
-  margin: 0;
-  padding: 0;
+  font-family: 'Ubuntu', sans-serif;
+  overflow:hidden;
+  
 }
-
-.admin {
-  visibility: hidden;
+body {
+  background: #210124;
+  background: rgb(33, 1, 36);
+  background: linear-gradient(
+    127deg,
+    rgba(33, 1, 36, 1) 27%,
+    rgba(117, 13, 55, 1) 72%
+  );
+  background-size: 150% 150%;
+  animation: move 6000ms ease-in-out infinite;
+  
 }
-
-.admin.show {
-  visibility: visible;
+.container{
+  
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #b3dec1;
 }
-
-.edit {
-  visibility: hidden;
+.sub-container{
+  background: rgb(33, 1, 36);
+  background: linear-gradient(
+    302deg,
+    rgba(33, 1, 36, 1) 27%,
+    rgba(117, 13, 55, 1) 72%
+  );
+  width: 70%;
+  border-radius: 3vh;
+  height: 90vh;
+  position: inherit;
+  justify-content: center;
+  align-items: center;
 }
-
-.edit.show {
-  visibility: visible;
-}
-
-.addmem {
-  visibility: hidden;
-}
-.addmem.show {
-  visibility: visible;
-}
-
-.removemem {
-  visibility: hidden;
-}
-.removemem.show {
-  visibility: visible;
+@keyframes move {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }

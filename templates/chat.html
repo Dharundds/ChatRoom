@@ -111,23 +111,25 @@
           </div>
           <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasWithBackdrop" aria-labelledby="offcanvasWithBackdropLabel">
             <div class="offcanvas-header">
-              <h3 class="offcanvas-title" id="offcanvasWithBackdropLabel">Members</h3>
+              <h3 class="offcanvas-title" id="offcanvasWithBackdropLabel"></h3>
               <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
               <p>
-              <h5>Admin</h5>
-              <ul> 
-                {% for member in room_members %}
-           
-              <li>{{ member._id.username}}</li>
-                {% endfor %}
-              </ul></p>
-              <ul>
+              <h3>Admins</h3>
+              <ul style="list-style: none;">
                 {% for admin in admins %}
                 <li>{{admin}}</li>
                 {% endfor %}
               </ul>
+              <h3>Members</h3>
+              <ul style="list-style: none;"> 
+                {% for member in non_admin %}
+           
+              <li>{{ member}}</li>
+                {% endfor %}
+              </ul></p>
+              
             </div>
           </div>
           
@@ -136,9 +138,9 @@
      
       <div class="rooms-div">
         <h3> Your Rooms</h3><br>
-        <ul>
+        <ul style="list-style: none;left:-6px;">
           {% for room in rooms %}
-            <li><a style="text-decoration:none;color:rgba(90, 194, 138, 1);" id="room-li" onclick="selectRoom()" href="/rooms/{{room._id.room_id}}/"> {{ room.room_name }}</a></li><br>
+            <li><a style="" id="room-li" onclick="selectRoom()" href="/rooms/{{room._id.room_id}}/"> {{ room.room_name }}</a></li><br>
           {% endfor %}
         </ul>
       </div>

@@ -363,3 +363,41 @@ animation: move 3000ms ease-in-out infinite;
   top:20px;
   overflow-y:scroll;
 }
+.offcanvas-body ul{
+  
+  font-size: smaller;
+  font-weight: normal;
+}
+.offcanvas-body h3{
+  font-weight: bold;
+  font-size: 1.7rem;
+  font-style: italic;
+}
+
+#room-li{
+  text-decoration:none;
+  color:rgba(90, 194, 138, 1);
+}
+#room-li:hover{
+  transition: ease-in-out 500ms;
+  color:rgba(179, 222, 193, 1);
+
+}
+@media only screen and (max-width: 750px){
+  .rooms-div{
+    display: none;
+  }
+  .menu{
+    background-color: transparent;
+  }
+  .members-div span{
+    display:none;
+  }
+  #logout{
+    display:none;
+  }
+  .chatbox{
+    left:0;
+    width:100%;  
+  }
+}
