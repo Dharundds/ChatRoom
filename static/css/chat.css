@@ -12,7 +12,7 @@ body {
     rgba(117, 13, 55, 1) 72%
   );
   background-size: 150% 150%;
-  animation: move 3000ms ease-in-out infinite;
+  animation: move 6000ms ease-in-out infinite;
   
 }
 
