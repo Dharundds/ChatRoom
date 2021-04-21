@@ -119,7 +119,7 @@ def edit_room(room_id):
             make_admin = request.form.get('makeAdmin')
             removeAdmin = request.form.get('removeAdmin')
             add_member = request.form.get('addmember')
-            rem_mem = request.form.get('removemember')
+            rem_mem = request.form.get('remove_user')
 
             if len(make_admin):
                 update_admin(room_id, make_admin)

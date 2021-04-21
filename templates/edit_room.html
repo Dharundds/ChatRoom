@@ -35,23 +35,27 @@
       </div>
     </div>
 
-
+    <form method="post">
+      Room Name:<input type="text" name="room_name" value="{{ room.name }}" />  
       <div class="add-members">
         <button type="button" onclick="add_mem()">Add members</button>
-
+      <div class="addmem">
       <input type="text" name='addmember' id='addmem' placeholder="enter the username..... ">
-
+    </div>
       </div>
       <div class="remove-members">
         <button type='button' onclick="remove_mem()">Remove Members</button>
-
-
-          <select name="remove" name='removemember' id="remove" >
-
+        <div class="removemem">
+          Remove Members:
+          <ul>
             {% for member in members %}
-            <option>{{member._id.username}}</option>
+            <li>{{member._id.username}}</li>
             {% endfor %}
-          </select>
+          </ul>
+          Enter the username:
+          <input type="text" name="remove_user" id="ru" autocomplete="off" />
+        </div>
+
 
       </div>
       <div class="admin-toggle">
@@ -59,20 +63,23 @@
           Make/Remove Admin
         </button>
 
-          Remove admin:
-          <select name="removeAdmin" id="ra">
-            <option></option>
-            {% for admin in admins %}
-            <option>{{admin}}</option>
-            {% endfor %}
-          </select>
-          Make Admin:
-          <select name="makeAdmin" id="ma">
-            <option></option>
-            {% for notadmin in not_admin %}
-            <option>{{notadmin}}</option>
-            {% endfor %}
-          </select>
+         
+          <div class="admin">
+            Remove admin:
+            <select name="removeAdmin" id="ra">
+              <option></option>
+              {% for admin in admins %}
+              <option>{{admin}}</option>
+              {% endfor %}
+            </select>
+            Make Admin:
+            <select name="makeAdmin" id="ma">
+              <option></option>
+              {% for notadmin in not_admin %}
+              <option>{{notadmin}}</option>
+              {% endfor %}
+            </select>
+          </div>
 
         <button type="submit">Submit</button>
         </form>
@@ -84,6 +91,27 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 <script>
   // if message not null show modal
+  show = () => {
+        const admin = document.querySelector(".admin");
+        admin.classList.add("show");
+      };
+      /* editIt = () => {
+        let edit = document.getElementById("em");
+        const edit_field = document.querySelector(".edit");
+        let field = document.getElementById("edit");
+        field.value = edit.value;
+        edit_field.classList.add("show");
+      }; */
+
+      add_mem = () => {
+        const add_mem = document.querySelector(".addmem");
+        add_mem.classList.add("show");
+      };
+
+      remove_mem = () => {
+        const add_mem = document.querySelector(".removemem");
+        add_mem.classList.add("show");
+      };
 </script>
 </body>
 </html>

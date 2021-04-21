@@ -1,8 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,500;1,500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,500;1,500&display=swap");
 * {
-  font-family: 'Ubuntu', sans-serif;
-  overflow:hidden;
-  
+  font-family: "Ubuntu", sans-serif;
+  overflow: hidden;
 }
 body {
   background: #210124;
@@ -14,10 +13,8 @@ body {
   );
   background-size: 150% 150%;
   animation: move 6000ms ease-in-out infinite;
-  
 }
-.container{
-  
+.container {
   width: 100%;
   height: 100vh;
   display: flex;
@@ -25,7 +22,7 @@ body {
   align-items: center;
   color: #b3dec1;
 }
-.sub-container{
+.sub-container {
   background: rgb(33, 1, 36);
   background: linear-gradient(
     302deg,
@@ -49,6 +46,36 @@ body {
   100% {
     background-position: 0% 50%;
   }
+}
+
+.admin {
+  visibility: hidden;
+}
+
+.admin.show {
+  visibility: visible;
+}
+
+.edit {
+  visibility: hidden;
+}
+
+.edit.show {
+  visibility: visible;
+}
+
+.addmem {
+  visibility: hidden;
+}
+.addmem.show {
+  visibility: visible;
+}
+
+.removemem {
+  visibility: hidden;
+}
+.removemem.show {
+  visibility: visible;
 }
 
 .check {
