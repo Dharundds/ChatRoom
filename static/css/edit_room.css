@@ -32,3 +32,10 @@
 .removemem.show {
   visibility: visible;
 }
+
+.check {
+  visibility: hidden;
+}
+.check.show {
+  visibility: visible;
+}

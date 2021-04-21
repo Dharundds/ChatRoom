@@ -118,8 +118,6 @@ def edit_room(room_id):
             update_room(room_id, room_name)
             make_admin = request.form.get('makeAdmin')
             removeAdmin = request.form.get('removeAdmin')
-            edit_member = request.form.get('edit_members')
-            edited_member = request.form.get('edit')
             add_member = request.form.get('addmember')
             rem_mem = request.form.get('removemember')
 
@@ -127,17 +125,12 @@ def edit_room(room_id):
                 update_admin(room_id, make_admin)
             if len(removeAdmin):
                 remove_admin(room_id, removeAdmin)
-            if len(edit_member):
-                remove_room_members(room_id, edit_member)
-                if len(edited_member):
-                    add_room_member(room_id, room_name,
-                                    edited_member, current_user.username)
             if add_member:
                 add_mems = [username.strip()
                             for username in add_member.split(',')]
                 add_room_members(room_id, room_name, add_mems,
                                  current_user.username)
-            if rem_mem==True:
+            if rem_mem:
                 print('hi')
                 remove_room_member(room_id, rem_mem)
             else:
@@ -155,8 +148,8 @@ def edit_room(room_id):
 def chat_room(room_id):
     rooms = get_rooms_for_user(current_user.username)
     room = get_room(room_id)
-    admins=[]
-    not_admin=[]
+    admins = []
+    not_admin = []
     if room and is_room_member(room_id, current_user.username):
         room_members = get_room_members(room_id)
         for member in room_members:
@@ -164,9 +157,9 @@ def chat_room(room_id):
                 admins.append(member['_id']['username'])
             else:
                 not_admin.append(member['_id']['username'])
-        
+
         messages = get_messages(room_id)
-        return render_template('chat.html',admins=admins, rooms=rooms, username=current_user.username, not_admin=not_admin,room=room, room_members=room_members, room_id=room_id, messages=messages)
+        return render_template('chat.html', admins=admins, rooms=rooms, username=current_user.username, not_admin=not_admin, room=room, room_members=room_members, room_id=room_id, messages=messages)
     else:
         return "Room not found", 404
 

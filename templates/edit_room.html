@@ -11,35 +11,33 @@
     <h1>{{message}}</h1>
     <form method="post">
       Room Name:<input type="text" name="room_name" value="{{ room.name }}" />
-      <!--Editing room members name-->
-      Edit Room members :<select name="edit_members" id="em" aria-readonly="true">
-        <option>
-          {% for member in members %}
-          <option>{{ member._id.username }}</option>
-          {% endfor %}
-        </option>
-      </select>
-      <button type="button" onclick="editIt()">edit</button>
-      <div class="edit">
-        <input type="text" name="edit" id='edit'>
-      </div>
 
       <!--adding members-->
       <button type="button" onclick="add_mem()">Add members</button>
       <div class="addmem">
-        Add Members: <input type="text" name='addmember' id='addmem' placeholder="enter the username..... ">
-      </div>      
+        Add Members:
+        <input
+          type="text"
+          name="addmember"
+          id="addmem"
+          placeholder="enter the username..... "
+        />
+      </div>
 
       <!--Removing members-->
-      <button type='button' onclick="remove_mem()">Remove Members</button>
+      <button type="button" onclick="remove_mem()">Remove Members</button>
       <div class="removemem">
         Remove Members:
-        <select name="remove" name='removemember' id="remove" >
-      
+
+        <select id="selected">
           {% for member in members %}
-          <option>{{member._id.username}}</option>
+          <option id="username">{{member._id.username}}</option>
           {% endfor %}
         </select>
+        <button type="button" onclick="username()">Check</button>
+        <div class="check">
+          Are you sure:<input type="text" name="rem" id="rem_mem" readonly />
+        </div>
       </div>
 
       <!--Make or remove member as Admin-->
@@ -72,23 +70,30 @@
         admin.classList.add("show");
       };
       editIt = () => {
-        let edit = document.getElementById('em');
-        const edit_field = document.querySelector('.edit')
-        let field = document.getElementById('edit')
-        field.value = edit.value
-        edit_field.classList.add('show')
-      }
+        let edit = document.getElementById("em");
+        const edit_field = document.querySelector(".edit");
+        let field = document.getElementById("edit");
+        field.value = edit.value;
+        edit_field.classList.add("show");
+      };
 
-      add_mem = () =>{
+      add_mem = () => {
         const add_mem = document.querySelector(".addmem");
-        add_mem.classList.add("show")
-      }
+        add_mem.classList.add("show");
+      };
 
-      remove_mem = () =>{
+      remove_mem = () => {
         const add_mem = document.querySelector(".removemem");
-        add_mem.classList.add("show")
-      }
+        add_mem.classList.add("show");
+      };
+      username = () => {
+        let select_but = document.querySelector(".check");
+        let field = document.getElementById("rem");
+        let member = document.getElementById("selected");
 
+        field.value = member.value;
+        select_but.classList.add("show");
+      };
     </script>
   </body>
 </html>
