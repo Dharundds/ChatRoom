@@ -43,7 +43,7 @@ def login():
 
         if user and user.check_password(password_input):
             login_user(user)
-            return redirect(url_for('home', username=username))
+            return redirect(url_for('home', username=current_user.username))
         else:
             message = 'Failed to login'
 
@@ -186,6 +186,7 @@ def handle_send_message_event(data):
 
 @socketio.on('leave_room')
 def leaving_room(data):
+    remove_room_member(data['room'], current_user.username)
     leave_room(data['room'])
     socketio.emit('leave_room_announcement', data, room=data['room'])
 
