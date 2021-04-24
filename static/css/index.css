@@ -3,6 +3,9 @@
   font-family: 'Ubuntu', sans-serif;
   
 }
+html{
+  overflow:hidden;
+}
 body {
   background: #210124;
   background: rgb(33, 1, 36);
@@ -21,6 +24,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow:hidden;
 }
 .textss {
   background: rgb(33, 1, 36);

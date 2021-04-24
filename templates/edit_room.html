@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/static/css/edit_room.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <link rel="shortcut icon" href="https://github.com/Dharundds/ChatRoom/blob/main/static/images/favicon.ico"
+    type="image/x-icon">
 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+    integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 
   <title>Edit Room</title>
 </head>
+
 <body>
   <div class="container">
     <div class="sub-container">
+
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog " id="modal">
           <div class="modal-content">
@@ -27,91 +34,242 @@
             </div>
             <div class="modal-footer">
 
-            <button type="button" id="moda-button2" class="btn btn-secondary" data-dismiss="modal">Try again</button>
-            <button type="button" id="moda-button" class="btn btn-primary" data-dismiss="modal" onclick="window.location.href='/signup'" >Sign Up</button>
+              <button type="button" id="moda-button2" class="btn btn-secondary" data-dismiss="modal">Try again</button>
+              <button type="button" id="moda-button" class="btn btn-primary" data-dismiss="modal"
+                onclick="window.location.href='/signup'">Sign Up</button>
             </div>
 
+          </div>
         </div>
       </div>
-    </div>
 
-    <form method="post">
-      Room Name:<input type="text" name="room_name" value="{{ room.name }}" />  
-      <div class="add-members">
-        <button type="button" onclick="add_mem()">Add members</button>
-      <div class="addmem">
-      <input type="text" name='addmember' id='addmem' placeholder="enter the username..... ">
-    </div>
-      </div>
-      <div class="remove-members">
-        <button type='button' onclick="remove_mem()">Remove Members</button>
-        <div class="removemem">
-          Remove Members:
-          <ul>
-            {% for member in members %}
-            <li>{{member._id.username}}</li>
-            {% endfor %}
-          </ul>
-          Enter the username:
-          <input type="text" name="remove_user" id="ru" autocomplete="off" />
+
+      <form method="post" id='myForm'>
+        <input type="text" name="room_name" title="Edit Room name" value={{ room.name }} id="room-name">
+
+        <div class="content">
+
+
+          <button id="add-members" type="button" title="Add members" onclick="show(this.id)"><span
+              class="material-icons">
+              person_add_alt_1
+            </span></button><br />
+          <button type='button' id='remove-members' title="Remove members" onclick="show(this.id)"><span
+              class="material-icons">
+              person_remove
+            </span></button><br />
+          <button type="button" id="make-remove" title="Make/Remove Admin" onclick="show(this.id)">
+            <span class="material-icons">
+              admin_panel_settings
+            </span>
+          </button> <br />
         </div>
+        <div class="hidden-content">
+
+          <div class="hid addmem">
+            <input type="text" title="Add Members" name='addmember' id='addmem' placeholder="Enter Username to add" autocomplete="off">
+          </div>
+          <div class="hid removemem">
+
+            <div class="dropdown" name="room">
+              <button class="btn btn-secondary dropdown-toggle roomname" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" name="room">
+                Select members
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="ddm">
+
+                {% for member in members %}
+                <ul style=" color:rgba(179, 222, 193, 1) ;list-style-type:none; ">
+                  <li id="dropp11">
+                    <p style=" color:rgba(179, 222, 193, 1) ;" id="dropp" class="dropdown-item" type="button" name="{{member._id.username}}"
+                      onclick="updater()"> {{member._id.username}}</p>
+                  </li>
+                </ul>
+                {% endfor %}
 
 
-      </div>
-      <div class="admin-toggle">
-        <button type="button" id="admins" onclick="show()">
-          Make/Remove Admin
-        </button>
+              </div>
+            </div>
+            <input type="text" title="username to remove" name="remove_user" id="ru" autocomplete="off" value=""></input>
 
-         
-          <div class="admin">
-            Remove admin:
-            <select name="removeAdmin" id="ra">
-              <option></option>
-              {% for admin in admins %}
-              <option>{{admin}}</option>
-              {% endfor %}
-            </select>
-            Make Admin:
-            <select name="makeAdmin" id="ma">
-              <option></option>
-              {% for notadmin in not_admin %}
-              <option>{{notadmin}}</option>
-              {% endfor %}
-            </select>
+          </div>
+          <div class="hid admin">
+            <div class="dropdown" name="room">
+              <button class="btn btn-secondary dropdown-toggle roomname" type="button" id="dropdownMenuButton1"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Remove admins" name="room">
+                remove admins
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="ddm">
+
+                {% for admin in admins %}
+                <ul style=" color:rgba(179, 222, 193, 1) ;list-style-type:none; ">
+                  <li>
+                    <p id="dropp2" style=" color:rgba(179, 222, 193, 1) ;" class="dropdown-item" type="button" name="removeAdmin"> {{admin}}</p>
+                  </li>
+                </ul>
+                {% endfor %}
+                <select style="display:none;" name="removeAdmin" id="ra"></select>
+              </div>
+            </div>
+            <!-- make admin -->
+            <div class="dropdown" name="room">
+              <button class="btn btn-secondary dropdown-toggle roomname" type="button" id="dropdownMenuButton2" title="Make admins"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" name="room">
+                make admins
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="ddm">
+          
+                {% for notadmin in not_admin %}
+                <ul style=" color:rgba(179, 222, 193, 1) ;list-style-type:none; ">
+                  <li>
+                    <p id="dropp3" style=" color:rgba(179, 222, 193, 1) ;" class="dropdown-item" type="button" > {{notadmin}}</p>
+                  </li>
+                </ul>
+          
+                {% endfor %}
+                
+          
+              </div>
+            </div>
+            <select style="display:none;" name="makeAdmin" id="ma"></select>
+
+
           </div>
 
-        <button type="submit">Submit</button>
-        </form>
-      </div>
-      <button><a href="/rooms/{{room_id}}"> Go back to chat</a></button>
+
+        </div>
+
+          <button id="submit" type="submit">Submit</button>
+      </form>
+      
+
+      <h1 id="title">Edit Room</h1>
+      <button id="goback-chat"><a style="color:black;" href="/rooms/{{room_id}}"> Go back to chat</a></button> 
     </div>
-  </div>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-<script>
-  // if message not null show modal
-  show = () => {
-        const admin = document.querySelector(".admin");
+    
+    </div>
+  
+
+    <!-- Remove admin:
+      <select name="removeAdmin" id="ra">
+        <option></option>
+        {% for admin in admins %}
+        <option>{{admin}}</option>
+        {% endfor %}
+      </select>
+      Make Admin:
+      <select name="makeAdmin" id="ma">
+        <option></option>
+        {% for notadmin in not_admin %}
+        <option>{{notadmin}}</option>
+        {% endfor %}
+      </select> -->
+
+   
+  
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+    integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
+    crossorigin="anonymous"></script>
+  <script>
+    // if message not null show modal
+    window.onclick = e => {
+      let a = e.target;
+      if (a.id === "dropp") {
+        let ame = a.innerHTML;
+        console.log(ame)
+        document.getElementById("ru").value = ame;
+      }
+      if (a.id === "dropp3") {
+        let vals = a.innerHTML;
+        console.log(vals);
+        document.getElementById("dropdownMenuButton2").innerHTML = vals;
+        document.getElementById("ma").value = vals;
+      }
+      if (a.id === "dropp2") {
+        let vals = a.innerHTML;
+        console.log(vals);
+        document.getElementById("dropdownMenuButton1").innerHTML = vals;
+        document.getElementById("ra").value = vals;
+      }
+      // to get the element
+      // to get the element tag name alone
+    }
+    updater = () => {
+      console.log("hi")
+      let ame = document.getElementById("dropp").innerHTML
+      document.getElementById("ru").value = ame;
+    }
+    show = (id) => {
+      const add_button = document.getElementById('add-members');
+      const remove_button = document.getElementById('remove-members');
+      const admin_button = document.getElementById('make-remove');
+      const rem_mem = document.querySelector(".removemem");
+      const admin = document.querySelector(".admin");
+      const add_mem = document.querySelector(".addmem");
+
+      console.log(remove_button.id)
+      console.log(id)
+
+      if (admin_button.id == id) {
+        //   console.log("ji")
+        rem_mem.classList.remove("see")
+        add_mem.classList.remove('show1')
+
         admin.classList.add("show");
-      };
-      /* editIt = () => {
-        let edit = document.getElementById("em");
-        const edit_field = document.querySelector(".edit");
-        let field = document.getElementById("edit");
-        field.value = edit.value;
-        edit_field.classList.add("show");
-      }; */
+      }
+      if (remove_button.id == id) {
+        admin.classList.remove("show")
+        add_mem.classList.remove('show1')
 
-      add_mem = () => {
-        const add_mem = document.querySelector(".addmem");
-        add_mem.classList.add("show");
-      };
+        rem_mem.classList.add("see");
+      }
+      if (add_button.id == id) {
+        admin.classList.remove("show")
+        rem_mem.classList.remove('see')
 
-      remove_mem = () => {
-        const add_mem = document.querySelector(".removemem");
-        add_mem.classList.add("show");
-      };
-</script>
+        add_mem.classList.add("show1");
+      }
+    };
+    document.getElementById('myForm').onsubmit = function (e) {
+      const add_field = document.getElementById('addmem');
+      add_field.innerHTML = ""
+
+
+    }
+
+
+
+
+
+
+
+
+
+    /* editIt = () => {
+      let edit = document.getElementById("em");
+      const edit_field = document.querySelector(".edit");
+      let field = document.getElementById("edit");
+      field.value = edit.value;
+      edit_field.classList.add("show");
+    }; */
+
+    /* add_mem = () => {
+      const add_mem = document.querySelector(".addmem");
+      add_mem.classList.add("show");
+    };
+
+    remove_mem = () => {
+      const add_mem = document.querySelector(".removemem");
+      add_mem.classList.add("show");
+    }; */
+  </script>
 </body>
+
 </html>

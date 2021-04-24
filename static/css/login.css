@@ -5,8 +5,9 @@
   margin: 0;
   box-sizing: border-box;
   font-family: 'Ubuntu', sans-serif;
-  
+  overlow:hidden;
 }
+
 
 body {
     background: linear-gradient(

@@ -121,17 +121,23 @@ def edit_room(room_id):
             add_member = request.form.get('addmember')
             rem_mem = request.form.get('remove_user')
 
-            if len(make_admin):
+
+            if make_admin:
+                print(make_admin)
                 update_admin(room_id, make_admin)
-            if len(removeAdmin):
+            if removeAdmin:
                 remove_admin(room_id, removeAdmin)
-            if add_member:
-                add_mems = [username.strip()
-                            for username in add_member.split(',')]
-                add_room_members(room_id, room_name, add_mems,
-                                 current_user.username)
+            try:
+                if add_member:
+                    add_mems = [username.strip()
+                                for username in add_member.split(',')]
+                    add_room_members(room_id, room_name, add_mems,
+                                    current_user.username)
+            except:
+                print("bruhhh")                        
             if rem_mem:
                 print('hi')
+                print(room_id, rem_mem)
                 remove_room_member(room_id, rem_mem)
             else:
                 print(rem_mem)
@@ -205,4 +211,5 @@ def load_user(username):
 
 
 if __name__ == "__main__":
-    socketio.run(app, debug=True)
+    # socketio.run(app, host='0.0.0.0') #uncomment this before deployment
+    socketio.run(app, debug="True")#comment this before deployment (this is used for running debug server)
