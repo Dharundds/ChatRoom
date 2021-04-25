@@ -4,9 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/static/css/chat.css" />
+    <link rel="stylesheet" href="../../static/css/chat.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Round">
-    <link rel="stylesheet" href="https://github.com/Dharundds/ChatRoom/blob/main/static/css/chat.css">
     <link rel="shortcut icon" href="https://github.com/Dharundds/ChatRoom/blob/main/static/images/favicon.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -14,7 +13,490 @@
       />
 
     <title>ChatRoom</title>
-   
+   <style>
+     @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,500;1,500&display=swap');
+* {
+  font-family: 'Ubuntu', sans-serif;
+  
+}
+body {
+  background: #210124;
+  background: rgb(33, 1, 36);
+  background: linear-gradient(
+    127deg,
+    rgba(33, 1, 36, 1) 27%,
+    rgba(117, 13, 55, 1) 72%
+  );
+  background-size: 150% 150%;
+  animation: move 6000ms ease-in-out infinite;
+  overflow:hidden;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #b3dec1;
+}
+.smaller-container{
+  background: rgb(33, 1, 36);
+  background: linear-gradient(
+    302deg,
+    rgba(33, 1, 36, 1) 27%,
+    rgba(117, 13, 55, 1) 72%
+  );
+  width: 100%;
+  border-radius: 3vh;
+  height: 90vh;
+  position: inherit;
+  justify-content: center;
+  align-items: center;
+}
+.chatbox{
+  position:relative;
+  
+  height: 90vh;
+  justify-content: right;
+  align-items: center;
+  width:70%;
+  left:30%;
+ 
+  
+
+}
+.menu{
+  position:relative;
+  top:-90%;
+}
+
+#edit-button{
+  position: relative;
+  left:89%;
+}
+#dropdownMenuButton {
+  position: relative;
+  top: 20px;
+  width:fit-content;
+  left: 10px;
+  text-align: left;
+  background-color: transparent;
+  border-style: none;
+  font-weight: medium;
+  color: rgb(179, 222, 193);
+  font-size: larger;
+  
+}
+#dropdownMenuButton:focus,#dropdownMenuButton:hover{
+  transition: 500ms;
+background-color: rgb(179, 222, 193);
+color:rgb(44, 44, 44);
+
+}
+.dropdown{
+  width:90%;
+ border-radius: 3vh;
+  height:10vh;
+  border-style: solid;
+  padding-right: 90%;
+  border-bottom-color: #b3dec1be;
+  border-bottom-width: 4px;
+  border-left-color: #b3dec1be;
+  border-left-width: 4px;
+  border-right: none;
+  border-top: none;
+}
+#ddm {
+  
+  max-height: 16vh;
+  white-space: nowrap;
+  background-color:    rgba(179, 222, 193, 0.87);
+  text-align: left;
+  align-items: center;
+  /* border-color: rgb(33,1,36);
+    border-width: 2px; */
+  border-style: none;
+}
+#offcanvasWithBackdrop,#offcanvasWithBackdrop1{
+  color:rgba(117, 13, 55, 1);
+  width:20%;
+background: linear-gradient(
+  127deg,
+  rgba(179, 222, 193, 1) 29%,
+  rgba(90, 194, 138, 1) 99%
+);
+}
+
+@keyframes move {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+#gopal{
+  color: aliceblue;
+  position: relative;
+  left:34%;
+  width:fit-content;
+  border-radius: 2vh;
+  padding: 10px;
+  
+  background-color: rgba(127, 128, 129, 0.384);
+}
+.rooms-div{
+  width:20%;
+  
+  position:relative;
+  height:90vh;
+  top:-200%;
+  left:10%;
+}
+
+#btn,#logout{
+  position: relative;
+  border-style: none;
+  cursor: pointer;
+  left:5%;
+}
+#btn{
+position:relative;
+top:10px;
+left:-10px;
+}
+#ddm em{
+  font-style: normal;
+  font-size: small;
+}
+.menu{
+  font-size: xx-large;
+  font-weight: bold;
+  background-color: rgba(44, 44, 44, 0.418);
+  width:10%;
+  height:90vh;
+  border-radius: 3vh;
+  top:-100%;
+}
+.members-div{
+  
+  position: absolute;
+  top:20px;
+  left:37px;
+}
+#logout{
+  position: absolute;
+  bottom:30px;
+  left:40px;
+  font-size:2rem;
+  padding: 5px;
+  border-radius: 1vh;
+}
+#logout:hover{
+  transition: 500ms;
+  color:black;
+  background: linear-gradient(
+  127deg,
+  rgba(179, 222, 193, 1) 29%,
+  rgba(90, 194, 138, 1) 99%
+);
+background-size:150% 150%;
+animation: move 3000ms ease-in-out infinite;
+  
+}
+#group-icon{
+  font-size: 2rem;
+  padding: 5px;
+  border-radius: 1vh;
+}
+#group-icon:hover{
+  transition: 500ms;
+  color:black;
+  background: linear-gradient(
+  127deg,
+  rgba(179, 222, 193, 1) 29%,
+  rgba(90, 194, 138, 1) 99%
+);
+background-size:150% 150%;
+animation: move 3000ms ease-in-out infinite;
+  
+}
+#chatform{
+  top:79%;
+  position:relative;
+  
+}
+#msg{
+  height: 7vh;
+  width:90%;
+  border-style: none;
+  border-radius: 2vh;
+  background: linear-gradient(
+  127deg,
+  rgba(179, 222, 193, 1) 29%,
+  rgba(90, 194, 138, 1) 99%
+);
+
+}
+#send-message{
+  top:9px;
+  height:7vh;
+  width:9%;
+  border-radius: 3vh;
+  border-style: none;
+  font-size: 2rem;
+  left:0px;
+  position: inherit;
+  background: linear-gradient(
+  127deg,
+  rgba(179, 222, 193, 1) 29%,
+  rgba(90, 194, 138, 1) 99%
+);
+color:black;
+}
+#send-message:hover{
+  background-size: 150% 150%;
+  animation: move 3000ms ease-in-out infinite;
+  
+}
+.message-container{
+  display: flex;
+position: relative;
+height:68vh;
+top:-40px;
+border-radius: 3vh;
+border-left-color: #b3dec1be;
+  border-left-width: 4px;
+  border-style: solid;
+border-top: none;
+border-bottom: none;
+border-right: none;
+
+}
+#sent-messages{
+  color:blue;
+  position:relative;
+  margin-left:14px;
+  margin-right: 20px;
+  width:45%;
+  border-radius: 2vh;
+  padding: 4px;
+  padding-left: 7px;
+  
+  background-color: rgba(127, 128, 129, 0.384);
+}
+
+#all-messages{
+  
+  height: 100%;
+  bottom: 10px;
+  width:100%;
+  overflow-y:scroll;
+  overflow-x: hidden;
+  
+
+  
+}
+::-webkit-scrollbar{
+  width:10px;
+  
+}
+::-webkit-scrollbar-thumb{
+  background: rgba(136, 136, 136, 0.808);
+  border-radius: 3vh;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f100;
+}
+
+#recieved-messages{
+  width:45%;
+  border-radius: 2vh;
+  padding: 4px;
+  
+  background-color: rgba(127, 128, 129, 0.384);
+
+  margin-left:14px;
+  color:whitesmoke;
+  padding-left: 7px;
+}
+#recieved-messages b{
+  color:rgb(160, 245, 157);
+}
+#all-messages em{
+  font-weight: lighter;
+  font-size:small ;
+  font-style: normal;
+  color:rgba(128, 128, 128, 0.671);
+}
+#sent-messages b{
+  color:rgb(245, 189, 240)
+}
+#username{
+  position:relative;
+  left:-70px;
+  top:-250px;
+  font-size: 2em;
+}
+#start{
+  position: relative;
+  left:36%;
+  color:#b3dec186;
+}
+#edit-button{
+  position:relative;
+  left: -10px;
+  top:2px;
+}
+#all-messages p{
+  color: rgb(232, 243, 232);
+}
+#gopal b{
+  color:mediumseagreen;
+}
+.rooms-div h3{
+  
+  position:relative;
+  left:10px;
+  top:22px;
+  width:fit-content;
+  border-radius: 3vh;
+  padding: 4px;
+}
+.rooms-div h3:hover{
+  transition: 500ms;
+  color:black;
+  background: linear-gradient(
+  127deg,
+  rgba(179, 222, 193, 1) 29%,
+  rgba(90, 194, 138, 1) 99%
+);
+background-size:150% 150%;
+animation: move 3000ms ease-in-out infinite;
+  
+}
+.rooms-div ul{
+  position:relative;
+  left:15px;
+  top:20px;
+  overflow-y:scroll;
+}
+.offcanvas-body ul{
+  
+  font-size: smaller;
+  font-weight: normal;
+}
+.offcanvas-body h3{
+  font-weight: bold;
+  font-size: 1.7rem;
+  font-style: italic;
+}
+
+#room-li{
+  text-decoration:none;
+  color:rgba(90, 194, 138, 1);
+}
+#room-li:hover{
+  transition: ease-in-out 500ms;
+  color:rgba(179, 222, 193, 1);
+
+}
+#dahboard{
+  visibility: hidden;
+}
+@media only screen and (max-width: 750px){
+  .rooms-div{
+    display: none;
+  }
+  .menu{
+    background-color: transparent;
+  }
+  /* .members-div span{
+    display:none;
+  } */
+  #logout{
+    position: absolute;
+    top:16px;
+    left:300px;
+    height:6vh;
+  }
+  .chatbox{
+    left:0;
+    width:100%;  
+  }
+  .message-container{
+    top:-50px;
+  }
+  #msg{
+    position:relative;
+    left:5%;
+    width:70%;
+  }
+  #send-message{
+    left:6%;
+    width:20%;
+  }
+  #start{
+    left:28%;
+  }
+  .dropdown{
+    left:15px;
+    border-radius: 0;
+    border-left: none;
+  }
+  #group-icon{
+    position: absolute;
+    top:0px;
+    left:190px;
+  }
+  #offcanvasWithBackdrop{
+    width:60%;
+  }
+  .mobile-rooms{
+    visibility: visible;
+    
+    
+  }
+  #username{
+  display:none;
+  }
+  #dashboard{
+    position: absolute;
+    top:60px;
+    font-size: 2rem;
+  padding: 5px;
+  border-radius: 1vh;
+    left:170px;
+  }
+  #dashboard:hover{
+    transition: 500ms;
+  color:black;
+  background: linear-gradient(
+  127deg,
+  rgba(179, 222, 193, 1) 29%,
+  rgba(90, 194, 138, 1) 99%
+);
+background-size:150% 150%;
+animation: move 3000ms ease-in-out infinite;
+  }
+  #offcanvasWithBackdrop1{
+    width:60%;
+  }
+  #rooms-canvas a{
+    color:#210124;
+    text-decoration: none;
+    font-size:large;
+  }
+  #mobile-li:hover{
+    text-decoration: underline;
+    transition: 500ms;
+  }
+}
+   </style>
   </head>
   <body>
     <div class="container">
