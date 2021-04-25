@@ -13,7 +13,7 @@ body {
   );
   background-size: 150% 150%;
   animation: move 6000ms ease-in-out infinite;
-  
+  overflow:hidden;
 }
 
 .container {
@@ -80,7 +80,7 @@ color:rgb(44, 44, 44);
 }
 .dropdown{
   width:90%;
- border-radius: 1vh;
+ border-radius: 3vh;
   height:10vh;
   border-style: solid;
   padding-right: 90%;
@@ -102,7 +102,7 @@ color:rgb(44, 44, 44);
     border-width: 2px; */
   border-style: none;
 }
-#offcanvasWithBackdrop{
+#offcanvasWithBackdrop,#offcanvasWithBackdrop1{
   color:rgba(117, 13, 55, 1);
   width:20%;
 background: linear-gradient(
@@ -264,7 +264,7 @@ border-right: none;
 #sent-messages{
   color:blue;
   position:relative;
-  left:52%;
+  margin-left:14px;
   margin-right: 20px;
   width:45%;
   border-radius: 2vh;
@@ -319,6 +319,12 @@ border-right: none;
 }
 #sent-messages b{
   color:rgb(245, 189, 240)
+}
+#username{
+  position:relative;
+  left:-70px;
+  top:-250px;
+  font-size: 2em;
 }
 #start{
   position: relative;
@@ -383,6 +389,9 @@ animation: move 3000ms ease-in-out infinite;
   color:rgba(179, 222, 193, 1);
 
 }
+#dahboard{
+  visibility: hidden;
+}
 @media only screen and (max-width: 750px){
   .rooms-div{
     display: none;
@@ -390,14 +399,84 @@ animation: move 3000ms ease-in-out infinite;
   .menu{
     background-color: transparent;
   }
-  .members-div span{
+  /* .members-div span{
     display:none;
-  }
+  } */
   #logout{
-    display:none;
+    position: absolute;
+    top:16px;
+    left:300px;
+    height:6vh;
   }
   .chatbox{
     left:0;
     width:100%;  
+  }
+  .message-container{
+    top:-50px;
+  }
+  #msg{
+    position:relative;
+    left:5%;
+    width:70%;
+  }
+  #send-message{
+    left:6%;
+    width:20%;
+  }
+  #start{
+    left:28%;
+  }
+  .dropdown{
+    left:15px;
+    border-radius: 0;
+    border-left: none;
+  }
+  #group-icon{
+    position: absolute;
+    top:0px;
+    left:190px;
+  }
+  #offcanvasWithBackdrop{
+    width:60%;
+  }
+  .mobile-rooms{
+    visibility: visible;
+    
+    
+  }
+  #username{
+  display:none;
+  }
+  #dashboard{
+    position: absolute;
+    top:60px;
+    font-size: 2rem;
+  padding: 5px;
+  border-radius: 1vh;
+    left:170px;
+  }
+  #dashboard:hover{
+    transition: 500ms;
+  color:black;
+  background: linear-gradient(
+  127deg,
+  rgba(179, 222, 193, 1) 29%,
+  rgba(90, 194, 138, 1) 99%
+);
+background-size:150% 150%;
+animation: move 3000ms ease-in-out infinite;
+  }
+  #offcanvasWithBackdrop1{
+    width:60%;
+  }
+  #rooms-canvas a{
+    color:#210124;
+    text-decoration: none;
+    font-size:large;
+  }
+  #mobile-li:hover{
+    text-decoration: underline;
+    transition: 500ms;
   }
 }

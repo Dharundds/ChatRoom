@@ -3,7 +3,7 @@ from flask_login import LoginManager, current_user, login_required, login_user, 
 from flask_socketio import SocketIO, join_room, leave_room, send
 from db import (add_room_members, get_messages, get_user, save_msg, save_room,
                 save_user, get_rooms_for_user, get_room, is_room_member,
-                get_room_members, is_room_admin, update_room, remove_room_members, update_admin, remove_admin, add_room_member, remove_room_member)
+                get_room_members, is_room_admin, update_room, remove_room_members, update_admin, remove_admin, add_room_member, remove_room_member,check_user)
 from datetime import datetime
 from bson.json_util import dumps
 
@@ -91,6 +91,11 @@ def create_room():
                 usernames.remove(current_user.username)
             add_room_members(room_id, room_name, usernames,
                              current_user.username)
+            for username in usernames:
+                user = check_user(username)
+                if user != None :
+                    message = 'user does not exist'
+                    break
             return redirect(url_for('chat_room', room_id=room_id))
         else:
             message = 'Failed to Create room'
@@ -104,9 +109,13 @@ def edit_room(room_id):
     room = get_room(room_id)
     admins = []
     not_admin = []
+    edited=False
+    error_msg = ''
+    message = ''
     if room and is_room_admin(room_id, current_user.username):
-        message = ''
+        
         members = get_room_members(room_id)
+        mem = [username['_id']['username'] for username in members]
         for member in members:
             if is_room_admin(room_id, member['_id']['username']):
                 admins.append(member['_id']['username'])
@@ -123,30 +132,64 @@ def edit_room(room_id):
 
 
             if make_admin:
-                print(make_admin)
-                update_admin(room_id, make_admin)
+                try:
+                    update_admin(room_id, make_admin)
+                    message = '{} is now an Admin🥳'.format(make_admin)
+                except:
+                    error_msg = 'Some error occured'
+                    
             if removeAdmin:
-                remove_admin(room_id, removeAdmin)
-            try:
-                if add_member:
-                    add_mems = [username.strip()
-                                for username in add_member.split(',')]
-                    add_room_members(room_id, room_name, add_mems,
-                                    current_user.username)
-            except:
-                print("bruhhh")                        
+                try:
+                    if len(admins)>1:
+                        remove_admin(room_id, removeAdmin)
+                        message = '{} removed from Admin'.format(removeAdmin)
+                    else:
+                        message= 'Atleast one admin should be present'
+                except:
+                    error_msg = 'Some error occured'
+            
+            if add_member:
+                try:
+                    user = check_user(add_member)
+                    
+                    if user:
+                        if add_member not in mem:
+                            add_mems = [username.strip()
+                                            for username in add_member.split(',')]
+                            add_room_members(room_id, room_name, add_mems,
+                                                current_user.username)
+                            message = '{} added successfully'.format(add_member)
+                        else:
+                            print("daddy")
+                            message = "{} already in room".format(add_member)
+                            
+                            
+                    else:
+                        message = "{} does not exist :(".format(add_member)
+                        print("poda")
+                        
+                    
+                except:
+                    error_msg = "Some error occured"
+                
             if rem_mem:
-                print('hi')
-                print(room_id, rem_mem)
-                remove_room_member(room_id, rem_mem)
-            else:
-                print(rem_mem)
-            message = "Edited Successfully"
+                try: 
+                    if len(mem) >1:
+                        print(room_id, rem_mem)
+                        remove_room_member(room_id, rem_mem)
+                        message = '{} removed successfully'.format(rem_mem)
+                    else:
+                        message= 'Atleast one member should be present'
+                except:
+                    error_msg = "Some error occured"
+            
+                #return redirect(url_for('edit_room',room_id=room_id,message = message))
 
         return render_template('edit_room.html', not_admin=not_admin, admins=admins, room=room, members=members, room_id=room_id, message=message)
 
     else:
-        return "Room not found", 404
+        return render_template('404.html',message='Only admins can Edit Room' ,room_id=room_id)
+
 
 
 @app.route('/rooms/<room_id>/')
@@ -167,7 +210,8 @@ def chat_room(room_id):
         messages = get_messages(room_id)
         return render_template('chat.html', admins=admins, rooms=rooms, username=current_user.username, not_admin=not_admin, room=room, room_members=room_members, room_id=room_id, messages=messages)
     else:
-        return "Room not found", 404
+
+        return render_template('404.html',message='Room does not exist')
 
 
 """ @app.route('/rooms/<room_id>/messages/')

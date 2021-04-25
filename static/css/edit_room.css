@@ -25,6 +25,43 @@
     align-items: center;
     color: #b3dec1;
   }
+  #moda-button2{
+    color:#210124
+  border-style:none;
+  background-color: rgb(97, 97, 97);
+}
+#exampleModalLabel{
+  background: linear-gradient(
+    302deg,
+    rgba(33, 1, 36, 1) 27%,
+    rgba(117, 13, 55, 1) 72%
+  );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 150% 150%;
+    animation: move 3000ms ease-in-out infinite;
+}
+#moda-button{
+  border-style: none;
+  background: linear-gradient(
+    302deg,
+    rgba(33, 1, 36, 1) 27%,
+    rgba(117, 13, 55, 1) 72%
+  );
+  width: 100px;
+}
+.modal-content{
+  background: linear-gradient(
+    127deg,
+    rgba(179, 222, 193, 1) 29%,
+    rgb(47, 199, 118) 99%
+  );
+  color:black;
+}
+#moda-button:hover{
+  background-size: 150% 150%;
+  animation: move 3000ms ease-in-out infinite;
+} 
   .sub-container {
    
     
@@ -291,3 +328,12 @@
     top:30px;
     left:-60px;
   }
+  @media only screen and (max-width: 750px){
+   .sub-container{
+     width:90%;
+   } 
+   #title{
+     
+   }
+  }
+  

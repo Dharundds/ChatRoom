@@ -24,19 +24,19 @@
         <div class="modal-dialog " id="modal">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Successful!!</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Result</h5>
               <button type="button" class="close" data-dismiss="modal" style="color:black;" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-              <h1>{{message}}</h1>
+              <h1 id='msg'>{{message}}</h1>
             </div>
             <div class="modal-footer">
 
-              <button type="button" id="moda-button2" class="btn btn-secondary" data-dismiss="modal">Try again</button>
-              <button type="button" id="moda-button" class="btn btn-primary" data-dismiss="modal"
-                onclick="window.location.href='/signup'">Sign Up</button>
+              <button type="button" id="moda-button" class="btn btn-secondary" ><a style="text-decoration: none;color:rgb(47, 199, 118) ;" href="/rooms/{{room_id}}/edit">okay</a></button>
+              <!-- <button type="button" id="moda-button" class="btn btn-primary" data-dismiss="modal"
+                onclick="window.location.href='/signup'">Sign Up</button> -->
             </div>
 
           </div>
@@ -82,7 +82,7 @@
                 <ul style=" color:rgba(179, 222, 193, 1) ;list-style-type:none; ">
                   <li id="dropp11">
                     <p style=" color:rgba(179, 222, 193, 1) ;" id="dropp" class="dropdown-item" type="button" name="{{member._id.username}}"
-                      onclick="updater()"> {{member._id.username}}</p>
+                      onclick="updater()">{{member._id.username}}</p>
                   </li>
                 </ul>
                 {% endfor %}
@@ -90,7 +90,7 @@
 
               </div>
             </div>
-            <input type="text" title="username to remove" name="remove_user" id="ru" autocomplete="off" value=""></input>
+            <input type="text" title="username to remove" name="remove_user" id="ru" autocomplete="off" value="" readonly></input>
 
           </div>
           <div class="hid admin">
@@ -104,11 +104,16 @@
                 {% for admin in admins %}
                 <ul style=" color:rgba(179, 222, 193, 1) ;list-style-type:none; ">
                   <li>
-                    <p id="dropp2" style=" color:rgba(179, 222, 193, 1) ;" class="dropdown-item" type="button" name="removeAdmin"> {{admin}}</p>
+                    <p id="dropp2" style=" color:rgba(179, 222, 193, 1) ;" class="dropdown-item" type="button" name="removeAdmin">{{admin}}</p>
                   </li>
                 </ul>
                 {% endfor %}
-                <select style="display:none;" name="removeAdmin" id="ra"></select>
+                <select style="display:none;" name="removeAdmin" id="ra">
+                <option ></option>
+                    {% for admin in admins %}
+                    <option>{{admin}}</option>
+                    {% endfor %}
+                </select>
               </div>
             </div>
             <!-- make admin -->
@@ -122,7 +127,7 @@
                 {% for notadmin in not_admin %}
                 <ul style=" color:rgba(179, 222, 193, 1) ;list-style-type:none; ">
                   <li>
-                    <p id="dropp3" style=" color:rgba(179, 222, 193, 1) ;" class="dropdown-item" type="button" > {{notadmin}}</p>
+                    <p id="dropp3" style=" color:rgba(179, 222, 193, 1) ;" class="dropdown-item" type="button" >{{notadmin}}</p>
                   </li>
                 </ul>
           
@@ -131,7 +136,14 @@
           
               </div>
             </div>
-            <select style="display:none;" name="makeAdmin" id="ma"></select>
+            <select style="visibility: hidden;" name="makeAdmin" id="ma">
+              <option></option>
+              {% for notadmin in not_admin %}
+              <option >{{notadmin}}</option>
+              {% endfor %}
+            
+            </select>
+
 
 
           </div>
@@ -177,24 +189,32 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
     integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
     crossorigin="anonymous"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
+      integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
+      crossorigin="anonymous"
+    ></script>
   <script>
     // if message not null show modal
+    
     window.onclick = e => {
       let a = e.target;
+      
       if (a.id === "dropp") {
         let ame = a.innerHTML;
-        console.log(ame)
+        
         document.getElementById("ru").value = ame;
       }
       if (a.id === "dropp3") {
-        let vals = a.innerHTML;
-        console.log(vals);
-        document.getElementById("dropdownMenuButton2").innerHTML = vals;
-        document.getElementById("ma").value = vals;
+        let valf = a.innerHTML;
+        document.getElementById("ma").value = valf;             
+        document.getElementById("dropdownMenuButton2").innerHTML = valf;
+
+          
       }
       if (a.id === "dropp2") {
         let vals = a.innerHTML;
-        console.log(vals);
+        
         document.getElementById("dropdownMenuButton1").innerHTML = vals;
         document.getElementById("ra").value = vals;
       }
@@ -202,7 +222,7 @@
       // to get the element tag name alone
     }
     updater = () => {
-      console.log("hi")
+     
       let ame = document.getElementById("dropp").innerHTML
       document.getElementById("ru").value = ame;
     }
@@ -214,8 +234,7 @@
       const admin = document.querySelector(".admin");
       const add_mem = document.querySelector(".addmem");
 
-      console.log(remove_button.id)
-      console.log(id)
+      
 
       if (admin_button.id == id) {
         //   console.log("ji")
@@ -243,16 +262,14 @@
 
 
     }
+    const message = '{{message}}' ;   
+    if (message){
+      $("#exampleModal").modal('show');
+      
+    }
+    
 
-
-
-
-
-
-
-
-
-    /* editIt = () => {
+      /* editIt = () => {
       let edit = document.getElementById("em");
       const edit_field = document.querySelector(".edit");
       let field = document.getElementById("edit");
