@@ -4,26 +4,26 @@
 
 ## About
 
-    ~This a group chat application with features like encryption and full flexibility.
+~This a group chat application with features like encryption and full flexibility.
 
-    ~This web application is built using Python's Flask and javascript for backend and HTML and CSS for frontend.
+~This web application is built using Python's Flask and javascript for backend and HTML and CSS for frontend.
 
 ## Visit
 
-    ~This web application is hosted using heroku [here](https://centigrade-chatroom.herokuapp.com/).
+~This web application is hosted using heroku [here](https://centigrade-chatroom.herokuapp.com/).
 
-    ~To run the application localy clone this repo and cd into it and run `flask run` .
+~To run the application localy clone this repo and cd into it and run `flask run` .
     
 ## Host
   
-    ~kindly refer [here](https://github.com/Dharundds/ChatRoom/blob/main/host.md) for detailed info on hosting using heroku.
+~kindly refer [here](https://github.com/Dharundds/ChatRoom/blob/main/host.md) for detailed info on hosting using heroku.
 
 ## Known issues
 
-     ~The web application may feel slow on heroku since it is using Flask which is intended for small scale use and heroku's limit on server ram for free tier.
+ ~The web application may feel slow on heroku since it is using Flask which is intended for small scale use and heroku's limit on server ram for free tier.
 
 ## Acknowledgements
 
-    ~[stackoverflow](https://stackoverflow.com/questions/41804507/h14-error-in-heroku-no-web-processes-running)
-    ~[real-python](https://realpython.com/flask-by-example-part-1-project-setup/) 
-    ~[flask](https://flask-doc.readthedocs.io/en/latest/)
+~[stackoverflow](https://stackoverflow.com/questions/41804507/h14-error-in-heroku-no-web-processes-running)
+~[real-python](https://realpython.com/flask-by-example-part-1-project-setup/) 
+~[flask](https://flask-doc.readthedocs.io/en/latest/)
