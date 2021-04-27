@@ -26,7 +26,7 @@
     color: #b3dec1;
   }
   #moda-button2{
-    color:#210124
+    color:#210124;
   border-style:none;
   background-color: rgb(97, 97, 97);
 }
@@ -143,19 +143,24 @@
   }
   #goback-chat{
     position: absolute;
-    top:50px;
+    top:55px;
     width:fit-content;
-    left:68%;
+    left:73%;
+    
     border-radius: 2vh;
-    height:6vh;
+    
     border-style:none;
-    background: linear-gradient(
-    127deg,
-    rgba(179, 222, 193, 1) 29%,
-    rgba(90, 194, 138, 1) 99%
-  );
+    background: transparent;
+    
   }
-  #goback-chat:hover{
+  #goback-chat a{
+    color:rgba(179, 222, 193, 1);
+    font-size: 2rem;
+  }
+  #goback-chat:hover a{
+    font-weight: bolder;
+    text-decoration: none;
+    transform:scale(1.2);
     background-size:150% 150%;
     animation: move 3000ms ease-in-out infinite;
    
@@ -223,15 +228,24 @@
   #add-members:hover,#remove-members:hover,#make-remove:hover{
     transform:scale(1.1);
   }
-
+#cancel{
+  position:absolute;
+  bottom: 60px;
+  left:36%;
+  height:7vh;
+  width:6%;
+  border-style: none;
+    border-radius: 1vh;
+    background: grey;
+}
   #submit{
     position: absolute;
     bottom:60px;
-    left:36%;
+    left:46%;
     border-style: none;
     border-radius: 1vh;
     height:7vh;
-    width:30%;
+    width:15%;
     background: linear-gradient(
       127deg,
       rgba(179, 222, 193, 1) 29%,
@@ -333,7 +347,53 @@
      width:90%;
    } 
    #title{
-     
+     position: absolute;
+     left:60px;
    }
+   .content{
+     background:none;
+     width:20%;
+   }
+   .content button{
+    height:5vh;
+   }
+   #room-name{
+     width:40%;
+   }
+   #goback-chat {
+     left:79%;
+     top:50px;
+     background: rgba(255, 255, 255, 0.322);
+   } 
+   #goback-chat a{
+     position:relative;
+     left:5px;
+     top:3px;
+   }
+   #addmem{
+    left:-10px;
+    width:80%;
+    top:-85px;
+   }
+   #dropdownMenuButton{
+     left:-10px;
+     top:-60px;
+   }
+   #dropdownMenuButton1{
+     left:70px;
+     top:-120px;
+
+  }
+  #dropdownMenuButton2{
+    left:-110px;
+    top:50px;
+  }
+  #cancel{
+    left:20%;
+    width:20%;
+
+  }
+  #submit{
+    width:30%;
   }
   

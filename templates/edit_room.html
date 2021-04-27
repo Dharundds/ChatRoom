@@ -74,7 +74,7 @@
             <div class="dropdown" name="room">
               <button class="btn btn-secondary dropdown-toggle roomname" type="button" id="dropdownMenuButton"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" name="room">
-                Select members
+                Remove members
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="ddm">
 
@@ -82,7 +82,7 @@
                 <ul style=" color:rgba(179, 222, 193, 1) ;list-style-type:none; ">
                   <li id="dropp11">
                     <p style=" color:rgba(179, 222, 193, 1) ;" id="dropp" class="dropdown-item" type="button" name="{{member._id.username}}"
-                      onclick="updater()">{{member._id.username}}</p>
+                      >{{member._id.username}}</p>
                   </li>
                 </ul>
                 {% endfor %}
@@ -90,7 +90,7 @@
 
               </div>
             </div>
-            <input type="text" title="username to remove" name="remove_user" id="ru" autocomplete="off" value="" readonly></input>
+            <input type="text" style="display:none" title="username to remove" name="remove_user" id="ru" autocomplete="off" value="" readonly></input>
 
           </div>
           <div class="hid admin">
@@ -136,7 +136,7 @@
           
               </div>
             </div>
-            <select style="visibility: hidden;" name="makeAdmin" id="ma">
+            <select style="display:none;" name="makeAdmin" id="ma">
               <option></option>
               {% for notadmin in not_admin %}
               <option >{{notadmin}}</option>
@@ -152,11 +152,14 @@
         </div>
 
           <button id="submit" type="submit">Submit</button>
+          <button id="cancel" > Cancel</button>
       </form>
       
 
       <h1 id="title">Edit Room</h1>
-      <button id="goback-chat"><a style="color:black;" href="/rooms/{{room_id}}"> Go back to chat</a></button> 
+      <button id="goback-chat"><a href="/rooms/{{room_id}}" class="material-icons" title="go back to chat">
+        arrow_back_ios
+    </a></button> 
     </div>
     
     </div>
@@ -202,7 +205,7 @@
       
       if (a.id === "dropp") {
         let ame = a.innerHTML;
-        
+        document.getElementById("dropdownMenuButton").innerHTML= ame;
         document.getElementById("ru").value = ame;
       }
       if (a.id === "dropp3") {
@@ -221,11 +224,7 @@
       // to get the element
       // to get the element tag name alone
     }
-    updater = () => {
-     
-      let ame = document.getElementById("dropp").innerHTML
-      document.getElementById("ru").value = ame;
-    }
+    
     show = (id) => {
       const add_button = document.getElementById('add-members');
       const remove_button = document.getElementById('remove-members');

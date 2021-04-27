@@ -76,6 +76,11 @@
       $("#exampleModal").modal('show');
       
     }
+    var input = document.getElementById("uname")
+
+  input.oninput = function() {
+  input.value = input.value.toLowerCase()
+}
     showPass = () => {
     
       var i = document.getElementById("pass").type;

@@ -149,9 +149,7 @@ h1:hover{
   text-decoration: underline;
   font-weight: bolder;
 }
-#uname{
-  text-transform: lowercase;
-}
+
 #person,#eye{
   position:relative;
   top: 137px;

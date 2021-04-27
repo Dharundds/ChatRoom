@@ -57,7 +57,7 @@
           visibility_off
         </span>
       </input> 
-      <button type="submit" id="submit">Sign in</button>
+      <button type="submit" id="submit">Sign up</button>
     </form>
     <p id="goback">Already signed up? <a href="/login" id="goback-a">SIGN IN</a></p>
   </div>
@@ -68,10 +68,15 @@
  
   <script>
             const message = '{{message}}' ;   
-            if (message){
+            if (message=="Failed to login"){
       $("#exampleModal").modal('show');
-      //=="Failed to login"
+      
     }
+    var input = document.getElementById("uname")// just your input element
+
+  input.oninput = function() {
+  input.value = input.value.toLowerCase()
+}
     showPass = () => {
     
     var i = document.getElementById("pass").type;
@@ -85,24 +90,7 @@
       document.getElementById("pass").type = "password";
     }
   };
-  document.getElementById('myForm').onsubmit = (e) =>{
-    let email = document.forms["myForm"]["email"].value; 
-    let username = document.forms['myForm']["uname"].value;
-    let alphanum = /^[0-9a-zA-z]+$/;
-    if(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[1-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email))   {
-        if(username.match(alphanum)){
-          return true
-        }
-        else{
-        e.preventDefault();
-        alert('Only Alphanumeric username is Allowed')
-        }
-    }
-    else{
-      e.preventDefault();
-      alert('Enter a valid Email Address');
-    }
-  }
   </script>
 </body>
+
 </html>

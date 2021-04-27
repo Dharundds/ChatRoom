@@ -85,9 +85,6 @@ h3{
   left:30px;
   height:9vh;
 }
-#uname{
-  text-transform: lowercase;
-}
 #pass{
  
   font-family: 'Roboto Mono', monospace;
