@@ -68,9 +68,9 @@
  
   <script>
             const message = '{{message}}' ;   
-            if (message=="Failed to login"){
+            if (message){
       $("#exampleModal").modal('show');
-      
+      //=="Failed to login"
     }
     showPass = () => {
     
@@ -85,7 +85,24 @@
       document.getElementById("pass").type = "password";
     }
   };
+  document.getElementById('myForm').onsubmit = (e) =>{
+    let email = document.forms["myForm"]["email"].value; 
+    let username = document.forms['myForm']["uname"].value;
+    let alphanum = /^[0-9a-zA-z]+$/;
+    if(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[1-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email))   {
+        if(username.match(alphanum)){
+          return true
+        }
+        else{
+        e.preventDefault();
+        alert('Only Alphanumeric username is Allowed')
+        }
+    }
+    else{
+      e.preventDefault();
+      alert('Enter a valid Email Address');
+    }
+  }
   </script>
 </body>
-
 </html>
