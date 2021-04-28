@@ -256,6 +256,6 @@ def load_user(username):
 
 
 if __name__ == "__main__":
-    # socketio.run(app, host='0.0.0.0') #uncomment this before deployment
+    socketio.run(app, host='0.0.0.0') #uncomment this before deployment
     # comment this before deployment (this is used for running debug server)
-    socketio.run(app, debug="True")
+    #socketio.run(app, debug="True")

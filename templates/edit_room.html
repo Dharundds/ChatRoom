@@ -150,11 +150,11 @@
 
         </div>
 
-          <button id="submit" type="submit">Submit</button>
-          <!--  
+          <button id="submit" title="Submit!" type="submit">Submit</button>
+           
 
-            <button type="button" id="cancel" > Cancel</button>
-          -->
+            <button type="button" id="cancel" title="clear fields" onclick="cleaner()"> Clear</button>
+         
       </form>
       
 
@@ -226,7 +226,10 @@
       // to get the element
       // to get the element tag name alone
     }
-    
+    cleaner = () =>{
+      location.reload();
+      return false;
+    }
     show = (id) => {
       const add_button = document.getElementById('add-members');
       const remove_button = document.getElementById('remove-members');
@@ -269,7 +272,7 @@
       
     }
     document.getElementById("myForm").onsubmit = (e)=>{
-    if( confirm('Are you wanna submit ')){
+    if( confirm('Do you wanna submit ')){
       return true;
     }
     else{

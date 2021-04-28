@@ -1,4 +1,4 @@
-# HOW TO HOST IN HEROKU
+# HOW TO HOST ON HEROKU
 
 ## pre requisite
 `sudo apt install python3`

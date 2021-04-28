@@ -1,5 +1,6 @@
 # Centigrade-ChatRoom
- a team project for build2Learn by [Dharundds](https://github.com/Dharundds), [HrithikMJ](https://github.com/HrithikMJ) & [Zaid](https://github.com/Zaid316)
+
+ a team project for Build2Learn by [Dharundds](https://github.com/Dharundds), [HrithikMJ](https://github.com/HrithikMJ) & [Zaid](https://github.com/Zaid316)
  
 
 ## About
@@ -10,17 +11,15 @@
 
 ## Visit
 
-~This web application is hosted using heroku [here](https://centigrade-chatroom.herokuapp.com/).
+~This web application is hosted using AWI [here](http://centigrade-chatroom.southindia.azurecontainer.io:5000/).
+
+
 
 ~To run the application localy clone this repo and cd into it and run `flask run` .
     
 ## Host
   
 ~kindly refer [here](https://github.com/Dharundds/ChatRoom/blob/main/host.md) for detailed info on hosting using heroku.
-
-## Known issues
-
- ~The web application may feel slow on heroku since it is using Flask which is intended for small scale use and heroku's limit on server ram for free tier.
 
 ## Acknowledgements
 
