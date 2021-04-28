@@ -151,7 +151,10 @@
         </div>
 
           <button id="submit" type="submit">Submit</button>
-          <button type="button" id="cancel" > Cancel</button>
+          <!--  
+
+            <button type="button" id="cancel" > Cancel</button>
+          -->
       </form>
       
 
@@ -265,13 +268,14 @@
       $("#exampleModal").modal('show');
       
     }
-    document.getElementById("submit").onsubmit = (e)=>{
-     if(confirm("Are you sure??")){
-       return true
-     }
-     else{
-       e.preventDefault()
-     }
+    document.getElementById("myForm").onsubmit = (e)=>{
+    if( confirm('Are you wanna submit ')){
+      return true;
+    }
+    else{
+      e.preventDefault();
+      return false
+    }
     }
 
       /* editIt = () => {
