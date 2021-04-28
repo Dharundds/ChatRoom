@@ -130,3 +130,12 @@ def get_messages(room_id):
         message['created_at'] = message['created_at'].strftime('%d %b, %H:%M')
 
     return messages
+
+
+def get_email(username):
+    try:
+        email= users_collections.find_one({'_id':username})
+        return email['email_address'] if email else None 
+    except:
+        email="no email"
+        return email  

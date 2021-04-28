@@ -3,7 +3,7 @@ from flask_login import LoginManager, current_user, login_required, login_user, 
 from flask_socketio import SocketIO, join_room, leave_room, send
 from db import (add_room_members, get_messages, get_user, save_msg, save_room,
                 save_user, get_rooms_for_user, get_room, is_room_member,
-                get_room_members, is_room_admin, update_room, remove_room_members, update_admin, remove_admin, add_room_member, remove_room_member, check_user)
+                get_room_members, is_room_admin, update_room, remove_room_members, update_admin, remove_admin, add_room_member, remove_room_member, check_user , get_email)
 from datetime import datetime
 from bson.json_util import dumps
 
@@ -157,15 +157,15 @@ def edit_room(room_id):
                                         for username in add_member.split(',')]
                             add_room_members(room_id, room_name, add_mems,
                                              current_user.username)
-                            message = '{} added successfully'.format(
+                            message = '\"{}\" added successfully'.format(
                                 add_member)
                         else:
-                            print("daddy")
-                            message = "{} already in room".format(add_member)
+                            
+                            message = "\"{}\" already in room".format(add_member)
 
                     else:
-                        message = "{} does not exist :(".format(add_member)
-                        print("poda")
+                        message = "\"{}\" does not exist :(".format(add_member)
+                        
 
                 except:
                     error_msg = "Some error occured"
@@ -197,6 +197,7 @@ def edit_room(room_id):
 def chat_room(room_id):
     rooms = get_rooms_for_user(current_user.username)
     room = get_room(room_id)
+    email=get_email(current_user.username)
     admins = []
     not_admin = []
     if room and is_room_member(room_id, current_user.username):
@@ -208,7 +209,7 @@ def chat_room(room_id):
                 not_admin.append(member['_id']['username'])
 
         messages = get_messages(room_id)
-        return render_template('chat.html', admins=admins, rooms=rooms, username=current_user.username, not_admin=not_admin, room=room, room_members=room_members, room_id=room_id, messages=messages)
+        return render_template('chat.html', admins=admins, rooms=rooms, username=current_user.username, not_admin=not_admin,email=email, room=room, room_members=room_members, room_id=room_id, messages=messages)
     else:
 
         return render_template('404.html', message='Room does not exist')

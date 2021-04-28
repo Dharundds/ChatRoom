@@ -60,7 +60,7 @@ h1{
   border-style: none;
   font-style: none;
   outline-style: none;
-  font-size: 150%;
+  font-size: 100%;
   width: 80%;
   border-radius: 1vh;
   color: #b3dec1;
@@ -87,7 +87,7 @@ h1{
 }
 
 #pass:hover,#pass:focus,#uname:focus,#uname:hover{
-  font-size: 160%;
+  font-size: 110%;
   transform:scale(1.1);
   transition: 500ms;
 }

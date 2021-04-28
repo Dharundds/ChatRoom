@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../../static/css/chat.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Round">
-    <link rel="shortcut icon" href="https://github.com/Dharundds/ChatRoom/blob/main/static/images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
@@ -143,7 +143,7 @@ background: linear-gradient(
   color: aliceblue;
   position: relative;
   left:34%;
-  width:fit-content;
+  width:max-content;
   border-radius: 2vh;
   padding: 10px;
   
@@ -282,9 +282,11 @@ border-right: none;
   position:relative;
   margin-left:14px;
   margin-right: 20px;
-  width:45%;
+  width:max-content;
+  height:fit-content;
+  max-width: 60%;
   border-radius: 2vh;
-  padding: 4px;
+  padding: 7px;
   padding-left: 7px;
   
   background-color: rgba(127, 128, 129, 0.384);
@@ -314,15 +316,18 @@ border-right: none;
 }
 
 #recieved-messages{
-  width:45%;
+  width:max-content;
+  height: fit-content;
+  max-width: 60%;
   border-radius: 2vh;
-  padding: 4px;
+  padding: 7px;
   
   background-color: rgba(127, 128, 129, 0.384);
 
   margin-left:14px;
   color:whitesmoke;
   padding-left: 7px;
+  
 }
 #recieved-messages b{
   color:rgb(160, 245, 157);
@@ -500,7 +505,7 @@ animation: move 3000ms ease-in-out infinite;
   </head>
   <body>
     <div class="container">
-      <span id="username" class="material-icons" title="email">
+      <span id="username" class="material-icons" title="{{email}}">
         account_circle<p style="position: relative;left:-10px;">{{current_user.username}}</p>
         </span>
       
@@ -716,7 +721,7 @@ animation: move 3000ms ease-in-out infinite;
       });
 
       socket.on("receive_msg", function (data) {
-        console.log(data);
+        // console.log(data);
         const newNode = document.createElement("span");
         
         newNode.innerHTML = `<p id="sent-messages"><b>${data.username}&nbsp;</b> <em>${data.created_at}&nbsp;</em><br>${data.message}<br></p>`;
@@ -727,7 +732,7 @@ animation: move 3000ms ease-in-out infinite;
       });
 
       socket.on("join_room_announcement", function (data, messages) {
-        console.log(data);
+        // console.log(data);
         const newNode = document.getElementById("gopal");
         newNode.innerHTML = `<b>${data.username}</b> is active now`;
         //document.getElementById("messages").appendChild(newNode);
@@ -736,7 +741,7 @@ animation: move 3000ms ease-in-out infinite;
 
       });
       socket.on("leave_room_announcement", function (data) {
-        console.log(data);
+        // console.log(data);
         const newNode = document.getElementById("gopal");
         newNode.innerHTML = `<b >${data.username}</b> has left the room`;
         let chatMessage = document.getElementById('all-messages');
