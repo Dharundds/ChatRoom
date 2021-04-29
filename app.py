@@ -25,7 +25,6 @@ def home():
 
     if current_user.is_authenticated:
         rooms = get_rooms_for_user(current_user.username)
-        print(rooms)
         a = len(rooms)
         if a == 0:
             have_rooms = False
@@ -38,7 +37,7 @@ def home():
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('home'))
-    message = 'ㅤ'
+    message = ''
     if request.method == "POST":
         username = request.form.get('username')
         password_input = request.form.get('password')
@@ -83,6 +82,7 @@ def logout():
 @login_required
 def create_room():
     message = ''
+    rooms = get_rooms_for_user(current_user.username)
     if request.method == "POST":
         room_name = request.form.get('room_name')
         usernames = [username.strip()
@@ -92,18 +92,21 @@ def create_room():
             room_id = save_room(room_name, current_user.username)
             if current_user.username in usernames:
                 usernames.remove(current_user.username)
-            add_room_members(room_id, room_name, usernames,
-                             current_user.username)
             for username in usernames:
                 user = check_user(username)
-                if user != None:
-                    message = 'user does not exist'
-                    break
+                if user:
+                    continue
+                else:
+                    message = f"{username} does't exist"
+                    return render_template('index.html', message1=message, have_rooms=True, rooms=rooms)
+
+            add_room_members(room_id, room_name, usernames,
+                             current_user.username)
             return redirect(url_for('chat_room', room_id=room_id))
         else:
             message = 'Failed to Create room'
 
-    return render_template('index.html', message1=message)
+    return render_template('index.html', message1=message, have_rooms=True, rooms=rooms)
 
 
 @app.route('/rooms/<room_id>/edit', methods=["POST", "GET"])
@@ -154,7 +157,6 @@ def edit_room(room_id):
             if add_member:
                 try:
                     user = check_user(add_member)
-
                     if user:
                         if add_member not in members_list:
                             add_mems = [username.strip()
@@ -164,10 +166,8 @@ def edit_room(room_id):
                             message = '\"{}\" added successfully'.format(
                                 add_member)
                         else:
-
                             message = "\"{}\" already in room".format(
                                 add_member)
-
                     else:
                         message = "\"{}\" does not exist :(".format(add_member)
                 except:
