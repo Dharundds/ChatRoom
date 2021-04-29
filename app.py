@@ -174,7 +174,7 @@ def edit_room(room_id):
             if rem_mem:
                 is_admin = is_room_admin(room_id, rem_mem)
                 try:
-                    if len(mem) > 1:
+                    if len(members_list) > 1:
                         if is_admin and len(admins) == 1:
                             message = 'Atleast one member should be present'
                         else:
