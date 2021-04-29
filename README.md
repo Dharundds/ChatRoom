@@ -9,17 +9,33 @@
 
 ~This web application is built using Python's Flask and javascript for backend and HTML and CSS for frontend.
 
+
 ## Visit
 
 ~This web application is hosted using AWI [here](http://centigrade-chatroom.southindia.azurecontainer.io:5000/).
 
 
 
-~To run the application localy clone this repo and cd into it and run `flask run` .
-    
+~To run the application localy clone this repo and cd into it and run 
+
+        flask run 
+
+(or) 
+
+~Build the docker image using 
+
+        docker build --tag <NAME> .
+and Run using 
+
+        docker run --name <NAME> -p 5000:5000 <NAME>
+
+
+
+
 ## Host
   
 ~kindly refer [here](https://github.com/Dharundds/ChatRoom/blob/main/host.md) for detailed info on hosting using heroku.
+
 
 ## Acknowledgements
 
