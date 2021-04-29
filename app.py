@@ -88,10 +88,14 @@ def create_room():
         usernames = [username.strip()
                      for username in request.form.get('members').split(',')]
 
-        if len(room_name) and len(usernames):
+        if len(room_name):
             for username in usernames:
                 user = check_user(username)
-                if user == None:
+                if username ==  "": 
+                    
+                    break
+                elif user ==None :
+                    print("bruhh")
                     message = f"user:\"{username}\" doesn't exist"
                     return render_template('index.html', message1=message, have_rooms=True, rooms=rooms)
                     break
@@ -176,7 +180,7 @@ def edit_room(room_id):
                 try:
                     if len(members_list) > 1:
                         if is_admin and len(admins) == 1:
-                            message = 'Atleast one member should be present'
+                            message = 'Atleast one Admin should be present '
                         else:
                             remove_room_member(room_id, rem_mem)
                             message = '{} removed successfully'.format(rem_mem)
