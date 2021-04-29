@@ -58,7 +58,7 @@ def signup():
     if request.method == "POST":
         username = request.form.get('username')
         password = request.form.get('password')
-        email_address = request.form.get('email_address')
+        email_address = request.form.get('email')
         user = get_user(username)
         message = 'ㅤ'
         if user:
