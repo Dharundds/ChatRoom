@@ -62,6 +62,11 @@
               admin_panel_settings
             </span>
           </button> <br />
+          <button type="submit" id="rem_room" title="remove_room" name='delete_room' value="Remove">
+            
+              room_remove
+            
+          </button>
         </div>
         <div class="hidden-content">
 
@@ -280,7 +285,15 @@
       return false
     }
     }
-
+    document.getElementById('myForm').onsubmit = (e)=>{
+      if(confirm("Are You sure in Deleting this room")){
+        return true
+      }
+      else{
+        e.preventDefault()
+        alert("Prevnted")
+      }
+    }
       /* editIt = () => {
       let edit = document.getElementById("em");
       const edit_field = document.querySelector(".edit");

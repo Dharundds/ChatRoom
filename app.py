@@ -3,7 +3,7 @@ from flask_login import LoginManager, current_user, login_required, login_user, 
 from flask_socketio import SocketIO, join_room, leave_room, send
 from db import (add_room_members, get_messages, get_user, save_msg, save_room,
                 save_user, get_rooms_for_user, get_room, is_room_member,
-                get_room_members, is_room_admin, update_room, remove_room_members, update_admin, remove_admin, add_room_member, remove_room_member, check_user , get_email)
+                get_room_members, is_room_admin, update_room, remove_room_members, update_admin, remove_admin, add_room_member, remove_room_member, check_user, get_email)
 from datetime import datetime
 from bson.json_util import dumps
 
@@ -114,7 +114,7 @@ def edit_room(room_id):
     if room and is_room_admin(room_id, current_user.username):
 
         members = get_room_members(room_id)
-        mem = [username['_id']['username'] for username in members]
+        members_list = [username['_id']['username'] for username in members]
         for member in members:
             if is_room_admin(room_id, member['_id']['username']):
                 admins.append(member['_id']['username'])
@@ -128,6 +128,7 @@ def edit_room(room_id):
             removeAdmin = request.form.get('removeAdmin')
             add_member = request.form.get('addmember')
             rem_mem = request.form.get('remove_user')
+            remove_room = request.form.get('delete_room')
 
             if make_admin:
                 try:
@@ -152,7 +153,7 @@ def edit_room(room_id):
                     user = check_user(add_member)
 
                     if user:
-                        if add_member not in mem:
+                        if add_member not in members_list:
                             add_mems = [username.strip()
                                         for username in add_member.split(',')]
                             add_room_members(room_id, room_name, add_mems,
@@ -160,13 +161,12 @@ def edit_room(room_id):
                             message = '\"{}\" added successfully'.format(
                                 add_member)
                         else:
-                            
-                            message = "\"{}\" already in room".format(add_member)
+
+                            message = "\"{}\" already in room".format(
+                                add_member)
 
                     else:
                         message = "\"{}\" does not exist :(".format(add_member)
-                        
-
                 except:
                     error_msg = "Some error occured"
 
@@ -183,6 +183,18 @@ def edit_room(room_id):
                         message = 'Atleast one member should be present'
                 except:
                     error_msg = "Some error occured"
+            if remove_room:
+                try:
+                    if len(mem) > 1:
+                        print("hi")
+                        remove_room_members(room_id, members)
+                        remove_room(room_id)
+                    else:
+                        remove_room_member(room_id, current_user.username)
+                        remove_room(room_id)
+                    return redirect(url_for('home'))
+                except:
+                    error_msg = "Some error oocured"
 
                 # return redirect(url_for('edit_room',room_id=room_id,message = message))
 
@@ -197,7 +209,7 @@ def edit_room(room_id):
 def chat_room(room_id):
     rooms = get_rooms_for_user(current_user.username)
     room = get_room(room_id)
-    email=get_email(current_user.username)
+    email = get_email(current_user.username)
     admins = []
     not_admin = []
     if room and is_room_member(room_id, current_user.username):
@@ -209,7 +221,7 @@ def chat_room(room_id):
                 not_admin.append(member['_id']['username'])
 
         messages = get_messages(room_id)
-        return render_template('chat.html', admins=admins, rooms=rooms, username=current_user.username, not_admin=not_admin,email=email, room=room, room_members=room_members, room_id=room_id, messages=messages)
+        return render_template('chat.html', admins=admins, rooms=rooms, username=current_user.username, not_admin=not_admin, email=email, room=room, room_members=room_members, room_id=room_id, messages=messages)
     else:
 
         return render_template('404.html', message='Room does not exist')
@@ -256,6 +268,6 @@ def load_user(username):
 
 
 if __name__ == "__main__":
-    socketio.run(app, host='0.0.0.0') #uncomment this before deployment
+    socketio.run(app, host='0.0.0.0')  # uncomment this before deployment
     # comment this before deployment (this is used for running debug server)
     #socketio.run(app, debug="True")

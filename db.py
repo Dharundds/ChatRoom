@@ -26,8 +26,9 @@ def get_user(username):
 
 
 def check_user(username):
-    user = users_collections.find_one({'_id':username})
+    user = users_collections.find_one({'_id': username})
     return user if user else None
+
 
 def save_room(room_name, created_by):
     room_id = room_collections.insert_one(
@@ -134,8 +135,12 @@ def get_messages(room_id):
 
 def get_email(username):
     try:
-        email= users_collections.find_one({'_id':username})
-        return email['email_address'] if email else None 
+        email = users_collections.find_one({'_id': username})
+        return email['email_address'] if email else None
     except:
-        email="no email"
-        return email  
+        email = "no email"
+        return email
+
+
+def delete_room(room_id):
+    rooms_collections.delete_one({'_id': ObjectId(room_id)})
