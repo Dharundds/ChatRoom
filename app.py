@@ -89,20 +89,15 @@ def create_room():
                      for username in request.form.get('members').split(',')]
 
         if len(room_name) and len(usernames):
-            
-            if current_user.username in usernames:
-                usernames.remove(current_user.username)
             for username in usernames:
                 user = check_user(username)
-                if user:
-                    continue
-                elif username == "" or " ":
-                    break    
-                else:
+                if user == None:
                     message = f"user:\"{username}\" doesn't exist"
                     return render_template('index.html', message1=message, have_rooms=True, rooms=rooms)
                     break
             room_id = save_room(room_name, current_user.username)
+            if current_user.username in usernames:
+                usernames.remove(current_user.username)
             add_room_members(room_id, room_name, usernames,
                              current_user.username)
             return redirect(url_for('chat_room', room_id=room_id))
