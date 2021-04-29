@@ -153,9 +153,10 @@ background: linear-gradient(
   width:20%;
   
   position:relative;
-  height:90vh;
+  height:80vh;
   top:-200%;
   left:10%;
+  overflow-y:scroll;
 }
 
 #btn,#logout{
@@ -365,12 +366,14 @@ border-right: none;
 }
 .rooms-div h3{
   
-  position:relative;
+  position:sticky;  
   left:10px;
   top:22px;
   width:fit-content;
   border-radius: 3vh;
   padding: 4px;
+  z-index: 2;
+  
 }
 .rooms-div h3:hover{
   transition: 500ms;
@@ -382,13 +385,15 @@ border-right: none;
 );
 background-size:150% 150%;
 animation: move 3000ms ease-in-out infinite;
-  
+
 }
+
 .rooms-div ul{
   position:relative;
   left:15px;
   top:20px;
-  overflow-y:scroll;
+  z-index: 0;
+  overflow-y: scroll;
 }
 .offcanvas-body ul{
   
@@ -705,7 +710,7 @@ animation: move 3000ms ease-in-out infinite;
 
         const leave = document.getElementById("btn");
         leave.onclick = function (e) {
-          if( confirm("This will quit the room and no longer you find this room..\n Are you sure??..")){
+          if( confirm("This will remove you from the room and no you cant find this room (For a very long time ...)\n Are you sure??..")){
           socket.emit("leave_room", {
             username: "{{username}}",
             room: "{{room._id}}",

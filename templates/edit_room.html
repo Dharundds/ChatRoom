@@ -62,9 +62,11 @@
               admin_panel_settings
             </span>
           </button> <br />
-          <button type="submit" id="rem_room" title="remove_room" name='delete_room' value="Remove">
+          <button type="submit" id="rem_room" title="remove room" name='delete_room' value="Remove">
             
-              room_remove
+            <span class="material-icons">
+              delete
+              </span>
             
           </button>
         </div>
@@ -276,22 +278,29 @@
       $("#exampleModal").modal('show');
       
     }
-    document.getElementById("myForm").onsubmit = (e)=>{
+    document.getElementById("submit").onclick = (e)=>{
     if( confirm('Do you wanna submit ')){
-      return true;
+      document.forms["myForm"].submit();
     }
     else{
       e.preventDefault();
+      alert("Prevented ( ◜‿◝ )♡")
       return false
     }
     }
-    document.getElementById('myForm').onsubmit = (e)=>{
-      if(confirm("Are You sure in Deleting this room")){
-        return true
+    document.getElementById('rem_room').onclick = (e)=>{
+      if(confirm("Are You sure in Deleting this room (;;;・_・)")){
+        if(confirm("This Room and its messages will be lost for a long time(forever) Σ(ಠ_ಠ) \n Are you sure?")){
+          document.forms["myForm"].submit();
+        }
+        else{
+          e.preventDefault()
+        alert("Prevented ( ◜‿◝ )♡")
+        } 
       }
       else{
         e.preventDefault()
-        alert("Prevented")
+        alert("Prevented ( ◜‿◝ )♡")
       }
     } 
       /* editIt = () => {

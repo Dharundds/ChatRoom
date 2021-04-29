@@ -201,7 +201,7 @@
   
   }
 
-  #add-members,#remove-members,#make-remove{
+  #add-members,#remove-members,#make-remove,#rem_room{
     border-style: none;
     border-radius: 3vh;
     position:relative;
@@ -213,19 +213,22 @@
     rgba(179, 222, 193, 1) 29%,
     rgba(90, 194, 138, 1) 99%
   );
-  top:160px;
+  top:140px;
   background-size:150% 150%;
   animation: move 3000ms ease-in-out infinite;
   
   }
   #remove-members{
-    top:210px;
+    top:190px;
   }
 
   #make-remove{
-    top:260px;
+    top:240px;
   }
-  #add-members:hover,#remove-members:hover,#make-remove:hover{
+  #rem_room{
+    top:290px;
+  }
+  #add-members:hover,#remove-members:hover,#make-remove:hover,#rem_room:hover{
     transform:scale(1.1);
   }
 #cancel{
