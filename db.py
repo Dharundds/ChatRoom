@@ -143,4 +143,4 @@ def get_email(username):
 
 
 def delete_room(room_id):
-    rooms_collections.delete_one({'_id': ObjectId(room_id)})
+    room_collections.delete_one({'_id': ObjectId(room_id)})

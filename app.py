@@ -3,7 +3,9 @@ from flask_login import LoginManager, current_user, login_required, login_user, 
 from flask_socketio import SocketIO, join_room, leave_room, send
 from db import (add_room_members, get_messages, get_user, save_msg, save_room,
                 save_user, get_rooms_for_user, get_room, is_room_member,
-                get_room_members, is_room_admin, update_room, remove_room_members, update_admin, remove_admin, add_room_member, remove_room_member, check_user, get_email)
+                get_room_members, is_room_admin, update_room, remove_room_members,
+                update_admin, remove_admin, add_room_member, remove_room_member,
+                check_user, get_email, delete_room)
 from datetime import datetime
 from bson.json_util import dumps
 
@@ -23,6 +25,7 @@ def home():
 
     if current_user.is_authenticated:
         rooms = get_rooms_for_user(current_user.username)
+        print(rooms)
         a = len(rooms)
         if a == 0:
             have_rooms = False
@@ -128,7 +131,7 @@ def edit_room(room_id):
             removeAdmin = request.form.get('removeAdmin')
             add_member = request.form.get('addmember')
             rem_mem = request.form.get('remove_user')
-            remove_room = request.form.get('delete_room')
+            rem_room = request.form.get('delete_room')
 
             if make_admin:
                 try:
@@ -183,16 +186,14 @@ def edit_room(room_id):
                         message = 'Atleast one member should be present'
                 except:
                     error_msg = "Some error occured"
-            if remove_room:
+            if rem_room == 'Remove':
                 try:
-                    if len(mem) > 1:
+                    for member in members_list:
                         print("hi")
-                        remove_room_members(room_id, members)
-                        remove_room(room_id)
-                    else:
-                        remove_room_member(room_id, current_user.username)
-                        remove_room(room_id)
+                        remove_room_member(room_id, member)
+                    delete_room(room_id)
                     return redirect(url_for('home'))
+
                 except:
                     error_msg = "Some error oocured"
 
@@ -268,6 +269,6 @@ def load_user(username):
 
 
 if __name__ == "__main__":
-    socketio.run(app, host='0.0.0.0')  # uncomment this before deployment
+    # socketio.run(app, host='0.0.0.0')  # uncomment this before deployment
     # comment this before deployment (this is used for running debug server)
-    #socketio.run(app, debug="True")
+    socketio.run(app, debug="True")
