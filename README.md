@@ -22,6 +22,8 @@
 
 
 ~To run the application localy clone this repo and cd into it and run 
+       
+        pip install -r requirements.txt
 
         flask run 
 
