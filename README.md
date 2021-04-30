@@ -5,9 +5,14 @@
 
 ## About
 
-~This a group chat application with features like encryption and full flexibility.
+~This a group chatroom application with features like encryption and full flexibility.
 
 ~This web application is built using Python's Flask and javascript for backend and HTML and CSS for frontend.
+
+~This application deals with server side coding and client side coding.
+
+~Server side - Python's Flask
+~Client side - Javascript 
 
 
 ## Visit
