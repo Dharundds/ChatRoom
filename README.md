@@ -17,7 +17,7 @@
 
 ## Visit
 
-~This web application is hosted using AWI [here](http://centigrade-chatroom.southindia.azurecontainer.io:5000/).
+~This web application is hosted using ACI [here](http://centigrade-chatroom.southindia.azurecontainer.io:5000/).
 
 
 
