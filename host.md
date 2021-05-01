@@ -53,7 +53,7 @@ run flask to test your code
   
   open the file and copy the following code
   
-  ```
+  ```docker
  build:
   docker:
     web: Dockerfile
