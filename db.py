@@ -5,7 +5,7 @@ from werkzeug.security import generate_password_hash
 from user import User
 
 client = MongoClient(
-    "mongodb+srv://Centigrade:Centigrade@centigrade-chatroom.l4cxo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+    "mongodb+srv://Centigrade:<password>@centigrade-chatroom.l4cxo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 
 chat_db = client.get_database("ChatDB")
 users_collections = chat_db.get_collection("users")
