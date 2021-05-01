@@ -5,19 +5,14 @@
 
 ## About
 
-~This a group chatroom application with features like encryption and full flexibility.
+~This a group chatroom application with features like encryption, privacy etc.
 
-~This web application is built using Python's Flask and javascript for backend and HTML and CSS for frontend.
-
-~This application deals with server side coding and client side coding.
-
-~Server side - Python's Flask
-~Client side - Javascript 
+~This web application is built using Python's Flask as server side backend and javascript for client side backend and HTML and CSS for frontend.
 
 
 ## Visit
 
-~This web application is hosted using ACI [here](http://centigrade-chatroom.southindia.azurecontainer.io:5000/).
+~This web application is hosted using ACI(Azure container instance) [here](http://centigrade-chatroom.southindia.azurecontainer.io:5000/).
 
 
 
@@ -36,12 +31,16 @@ and Run using
 
         docker run --name <NAME> -p 5000:5000 <NAME>
 
-
+~Our orginal database is censored for security reasons you can also connect your own database or access ours by contacting us .
 
 
 ## Host
   
 ~kindly refer [here](https://github.com/Dharundds/ChatRoom/blob/main/host.md) for detailed info on hosting using heroku.
+
+## Known issues 
+
+~ feel free to report bugs [here](https://github.com/Dharundds/ChatRoom/issues).
 
 
 ## Acknowledgements
