@@ -17,10 +17,11 @@
 
 
 ~To run the application localy clone this repo and cd into it and run 
-       
+       ```
         pip install -r requirements.txt
-
+        export DBSTRING="mongodb://127.0.0.1:27017/" #Your mongodb string
         flask run 
+        ```
 
 (or) 
 
@@ -29,9 +30,9 @@
         docker build --tag <NAME> .
 and Run using 
 
-        docker run --name <NAME> -p 5000:5000 <NAME>
+        docker run --name <NAME> -p 5000:5000 --env DBSTRING=<MONGODB_CONNECTION_STRING> <NAME> 
 
-~Our orginal database is censored for security reasons you can also connect your own database or access ours by contacting us .
+
 
 
 ## Host

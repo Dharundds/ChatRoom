@@ -1,11 +1,14 @@
+import os
 from datetime import datetime
 from bson.objectid import ObjectId
 from pymongo import MongoClient
 from werkzeug.security import generate_password_hash
 from user import User
 
-client = MongoClient(
-    "mongodb+srv://Centigrade:Centigrade@centigrade-chatroom.l4cxo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+DBSTRING  = os.getenv('DBSTRING')
+if DBSTRING == "":
+    exit("Missing DBSTRING env variable")
+client = MongoClient(DBSTRING)
 #the password has been censored for security reasons if you wanna access our main db contact us. You can also use it with your own mongodb database
 chat_db = client.get_database("ChatDB")
 users_collections = chat_db.get_collection("users")
