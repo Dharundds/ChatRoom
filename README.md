@@ -17,20 +17,25 @@
 
 
 ~To run the application localy clone this repo and cd into it and run 
-       ```
-        pip install -r requirements.txt
-        export DBSTRING="mongodb://127.0.0.1:27017/" #Your mongodb string
-        flask run 
-        ```
+
+
+`pip install -r requirements.txt`
+
+`export DBSTRING="mongodb://127.0.0.1:27017/"` #Your mongodb string or contact us to get access to our db
+
+`flask run `
+        
+      
 
 (or) 
 
 ~Build the docker image using 
 
-        docker build --tag <NAME> .
+`docker build --tag <NAME> .`
+
 and Run using 
 
-        docker run --name <NAME> -p 5000:5000 --env DBSTRING=<MONGODB_CONNECTION_STRING> <NAME> 
+`docker run --name <NAME> -p 5000:5000 --env DBSTRING=<MONGODB_CONNECTION_STRING> <NAME> `
 
 
 
