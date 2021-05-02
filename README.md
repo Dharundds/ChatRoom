@@ -30,7 +30,7 @@
         docker build --tag <NAME> .
 and Run using 
 
-        docker run --name <NAME> -p 5000:5000 <NAME> --env DBSTRING=<MONGODB_CONNECTION_STRING>
+        docker run --name <NAME> -p 5000:5000 --env DBSTRING=<MONGODB_CONNECTION_STRING> <NAME> 
 
 
 
