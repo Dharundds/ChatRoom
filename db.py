@@ -6,7 +6,7 @@ from werkzeug.security import generate_password_hash
 from user import User
 
 DBSTRING  = os.getenv('DBSTRING')
-if DBSTRING == "":
+if DBSTRING =="None":
     exit("Missing DBSTRING env variable")
 client = MongoClient(DBSTRING)
 #the password has been censored for security reasons if you wanna access our main db contact us. You can also use it with your own mongodb database
