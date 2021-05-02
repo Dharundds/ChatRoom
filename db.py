@@ -5,7 +5,7 @@ from werkzeug.security import generate_password_hash
 from user import User
 
 client = MongoClient(
-    "mongodb+srv://Centigrade:<password>@centigrade-chatroom.l4cxo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+    "mongodb+srv://Centigrade:Centigrade@centigrade-chatroom.l4cxo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 #the password has been censored for security reasons if you wanna access our main db contact us. You can also use it with your own mongodb database
 chat_db = client.get_database("ChatDB")
 users_collections = chat_db.get_collection("users")
